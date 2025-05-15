@@ -1,6 +1,6 @@
 ---
 title: "Final_Project_Code"
-author: "Elliot Kunz, Andrea Pareja"
+author: "Elliot Kunz, Andrea Pareja, Anson Wu"
 format: html
 editor: visual
 ---

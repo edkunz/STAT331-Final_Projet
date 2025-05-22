@@ -22,6 +22,11 @@ library(tidyverse)
 library(gt)
 ```
 
+## Hypothesis
+
+We believe that as daily income increases, so does the happiness score (WHR). Typically higher incomes means more financial freedom, this lowers the stress that is built up from worrying about financial problems like cost of living. In the article, “Does more money correlate with greater happiness?” by Michele W. Berger, Matthew Killingsworth argues that “for most people larger incomes are associated with greater happiness” (Berger 2023).
+
+
 ```{r}
 data1 <- read_csv("hapiscore_whr.csv", show_col_types = F)
 data2 <- read_csv("mincpcap_cppp.csv", show_col_types = F)
@@ -50,6 +55,8 @@ summary(data)
 ```
 
 Works Cited:
+
+Berger, Michele W. “Does More Money Correlate with Greater Happiness?” Penn Today, University of Pennsylvania, 6 Mar. 2023, penntoday.upenn.edu/news/does-more-money-correlate-greater-happiness-Penn-Princeton-research.
 
 Helliwell, John F., et al. \"World Happiness Report 2024.\" The World Happiness Report, 20 Mar. 2024, [worldhappiness.report/ed/2024/](http://worldhappiness.report/ed/2024/).
 

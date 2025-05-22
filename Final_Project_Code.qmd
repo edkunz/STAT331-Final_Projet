@@ -24,7 +24,7 @@ library(gt)
 
 ### Data Descriptions
 
-In this analysis, we use data collected by Gallup World Poll on November 20, 2024 which contains the national average response to the question of life evaluations. We additionally include information from a dataset provided by Gapminder on the mean daily household per capita income. Our analysis includes the years 2005 - 2023.
+In this analysis, we use data collected by Gallup World Poll on November 20, 2024 which contains the national average response to the question of life evaluations. We additionally include information from a dataset provided by Gapminder on the mean daily household per capita income. Our analysis includes the years 2005 - 2023. We omitted any countrys and years who had missing values for either the happiness score or their mean daily household per capita income.
 
 ### Hypothesis
 

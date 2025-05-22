@@ -1,28 +1,63 @@
 ---
 title: "Final_Project_Code"
+date: now
 author: "Elliot Kunz, Andrea Pareja, Anson Wu, Caroline Ritchey"
-format: html
-editor: visual
+format: 
+  html:
+    embed-resources: true
+    code-tools: true
+    toc: true
+editor: source
+execute: 
+  error: true
+  echo: true
+  message: false
+  warning: false
 ---
 
-## Quarto
+## PC 3
 
-Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
-
-## Running Code
-
-When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
-
-```{r}
-1 + 1
-2+2
+```{r setup}
+library(tidyverse)
+library(gt)
 ```
 
-You can add options to executable code like this
 
 ```{r}
-#| echo: false
-2 * 2
+data1 <- read_csv("hapiscore_whr.csv", show_col_types = F)
+data2 <- read_csv("mincpcap_cppp.csv", show_col_types = F)
+
+
+
+clean_data1 <- data1 %>% 
+  pivot_longer(cols = `2005`:`2023`,
+              names_to = "year",
+              values_to = "happiness")
+  
+
+
+clean_data2 <- data2 %>% 
+  pivot_longer(cols = `1800`:`2100`,
+              names_to = 'year',
+              values_to = "daily_income")
+  
+  
+data <- clean_data1 %>% 
+  inner_join(clean_data2, 
+             by = join_by(country == country, year == year))
+
+
+summary(data)
 ```
 
-The `echo: false` option disables the printing of code (only output is displayed).
+
+```{r}
+model <- glm(happiness ~ daily_income, data = data)
+summary(model)
+
+ggplot(data = data, mapping = aes(x = daily_income, y = happiness))+
+  geom_point()+
+  geom_smooth(colour = "blue")
+
+```
+

@@ -22,7 +22,7 @@ library(tidyverse)
 library(gt)
 ```
 
-## Hypothesis
+### Hypothesis
 
 We believe that as daily income increases, so does the happiness score (WHR). Typically higher incomes means more financial freedom, this lowers the stress that is built up from worrying about financial problems like cost of living. In the article, “Does more money correlate with greater happiness?” by Michele W. Berger, Matthew Killingsworth argues that “for most people larger incomes are associated with greater happiness” (Berger 2023).
 
@@ -48,19 +48,22 @@ clean_data2 <- data2 %>%
   
 data <- clean_data1 %>% 
   inner_join(clean_data2, 
-             by = join_by(country == country, year == year))
+             by = join_by(country == country, year == year)) %>% 
+  na.omit()
 
-
-summary(data)
+kable(data, col.names = c("Country", "Year", "Happiness"," Daily Income"), align = "c", digits = 2)
 ```
 
-Works Cited:
+### Works Cited
 
 Berger, Michele W. “Does More Money Correlate with Greater Happiness?” Penn Today, University of Pennsylvania, 6 Mar. 2023, penntoday.upenn.edu/news/does-more-money-correlate-greater-happiness-Penn-Princeton-research.
 
 Helliwell, John F., et al. \"World Happiness Report 2024.\" The World Happiness Report, 20 Mar. 2024, [worldhappiness.report/ed/2024/](http://worldhappiness.report/ed/2024/).
 
 \"Poverty and Inequality Platform.\" Poverty and Inequality Platform, 2022, [pip.worldbank.org/#](http://pip.worldbank.org/#). 
+
+
+## PC 4
 
 ```{r}
 model <- glm(happiness ~ daily_income, data = data)

@@ -70,10 +70,8 @@ Helliwell, John F., et al. "World Happiness Report 2024." The World Happiness Re
 
 ## PC 4
 ### Data Visualization
-
 Create two visualizations exploring the following:
-
-The relationship between the two quantitative variables you are investigating. Remember: your response variable should be on the y-axis and your explanatory variable should be on the x-axis. You may want to aggregate the values for each country over all years in the data (so each point is one country)
+The relationship between the two quantitative variables you are investigating.
 
 ```{r}
 grouped_data <- data %>% 
@@ -90,11 +88,6 @@ ggplot(data = grouped_data, mapping = aes(x = log(daily_income), y = happiness))
        title = "Scatterplot of Happiness compared to Daily Income")
 
 ```
-
-
-Present and discuss visualizations of the relationship between the variables.
-
-We used the mean score of the Happiness score and Daily Income for each country. The relationship of the varaibles followed a logarithmic distribution which we then transformed to get a linear relationship by using the logrithmic function on Daily Income. We then get a nicely formated linear relationship between the log of Daily Income and Happiness Score. 
 
 How this relationship (from #1) has changed over time using an animated plot. 
 
@@ -126,13 +119,15 @@ animate(animated_plot,
 
 ![](happiness_animation.gif)
 
+Present and discuss visualizations of the relationship between the variables.
+
+We used the mean score of the Happiness score and Daily Income for each country. The relationship of the varaibles followed a logarithmic distribution which we then transformed to get a linear relationship by using the logrithmic function on mean of Daily Income over the years 2005 to 2023. We then get a nicely formated linear relationship between the log of the mean Daily Income and mean Happiness Score. 
+
+Based on the animated plot the line over time stays relativly the same with some years having a stronger relationship than other years. We still see a positive relationship in all years between the log of the mean daily income and happiness score which indicates that the log of the mean daily income could be a strong predictor of the happiness score of a country. 
+
 ### Linear Regression
 
 Fit a simple linear regression model for the relationship between the variables you selected.
-
-To perform your linear regression, you will likely want to summarize your data so you have one x value and one y value per country. You may do this by averaging (or taking the median) across all years, averaging across a subset of years, or picking a year of particular interest. Make sure you discuss your decision in your written report.
-
-If you did not do this for your first visualization in 2.1, please include a scatterplot of the data that you will use in your regression model. You should be able to plot the exact regression line that you fit on this plot. This plot may also reveal that you need to transform the x or the y variable so that they show a linear relationship.
 
 ```{r}
 model <- lm(happiness ~ log(daily_income), data = grouped_data)
@@ -141,7 +136,7 @@ model <- lm(happiness ~ log(daily_income), data = grouped_data)
 
 Describe the statistical method used – linear regression.
 
-We made a model to predict the mean Happiness Score based on the log of the mean Daily Income for each country. 
+We made a model to predict the mean Happiness Score based on the log of the mean Daily Income for each country, from the years 2005 to 2023. 
 
 ```{r}
 #| warning: false
@@ -158,9 +153,9 @@ Predicted Happpiness Score = 31.59 + 8.73*log(Daily_Income)
 
 Interpret the linear regression coefficients (in context).
 
-Assuming that log(daily_income) is 0 we assume that the happiness score for a country would be 31.59.
+We predict that a country with a log of their mean daily income equal to 0 will have a mean happiness score of 31.59 between the years 2005 to 2023.
 
-If we multiply Daily Income by e, we preduict a chnage of 8.73 in the mean Happiness Score. 
+If we multiply the mean Daily Income by e, we preduict a chnage of 8.73 in the mean Happiness Score. 
 
 ### Model Fit
 

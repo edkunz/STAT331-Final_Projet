@@ -57,7 +57,7 @@ data <- clean_data1 %>%
              by = join_by(country == country, year == year)) %>% 
   na.omit()
 
-kable(data, col.names = c("Country", "Year", "Happiness"," Daily Income"), align = "c", digits = 2)
+kable(sample_n(data, size = 10), col.names = c("Country", "Year", "Happiness"," Daily Income"), align = "c", digits = 2)
 ```
 
 ### Works Cited

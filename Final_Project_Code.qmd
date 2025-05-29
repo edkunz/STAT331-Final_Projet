@@ -181,7 +181,6 @@ glance(model) %>%
   row_spec(0, bold = TRUE) %>%
   add_header_above(bold = TRUE, c("Explained Variation Table" = 12)) %>%
   remove_column(c(8:9, 11))
-  
 ```
 
 Discuss the proportion of the variability in the response values that was accounted for by your regression model. What does this suggest about the “quality” of your model?

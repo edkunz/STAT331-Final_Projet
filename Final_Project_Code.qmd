@@ -131,8 +131,11 @@ animated_plot <- ggplot(data = data, mapping = aes(x = log(daily_income), y = ha
     color = "Country") +
   theme_minimal()
 
-animated_gif <- animate(animated_plot, width = 800, height = 600, fps = 10)
-anim_save("happiness_animation.gif", animated_gif)
+anim_save(filename = "happiness_animation.gif", 
+          plot = animated_plot, 
+          width = 800, 
+          height = 600, 
+          fps = 10)
 ```
 
 

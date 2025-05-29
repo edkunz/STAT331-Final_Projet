@@ -19,7 +19,10 @@ execute:
 
 ```{r setup}
 library(tidyverse)
-library(gt)
+library(knitr)
+library(kableExtra)
+library(broom)
+library(gganimate)
 ```
 
 ### Data Descriptions
@@ -69,12 +72,120 @@ Helliwell, John F., et al. \"World Happiness Report 2024.\" The World Happiness 
 
 ## PC 4
 
-```{r}
-model <- glm(happiness ~ daily_income, data = data)
-summary(model)
 
-ggplot(data = data, mapping = aes(x = daily_income, y = happiness))+
+Written Components:
+
+Present and discuss visualizations of the relationship between the variables.
+
+Describe the statistical method used – linear regression.
+
+Present the estimated regression model (in notation).
+
+Interpret the linear regression coefficients (in context).
+
+Describe the fit of the regression model (both in table and written format).
+
+2.1 Data Visualization
+Create two visualizations exploring the following:
+
+The relationship between the two quantitative variables you are investigating.
+Remember: your response variable should be on the y-axis and your explanatory variable should be on the x-axis.
+You may want to aggregate the values for each country over all years in the data (so each point is one country)
+```{r}
+grouped_data <- data %>% 
+  group_by(country) %>% 
+  summarise(happiness = mean(happiness), 
+            daily_income = mean(daily_income))
+
+
+ggplot(data = grouped_data, mapping = aes(x = log(daily_income), y = happiness))+
   geom_point()+
-  geom_smooth(colour = "blue")
+  geom_smooth(colour = "blue", method = lm)+
+  labs(x = "Daily Income (log(Mean over the years))", 
+       y = "Happiness Score (Mean over the years)", 
+       title = "Scatterplot of Happiness compared to Daily Income")
 
 ```
+
+
+How this relationship (from #1) has changed over time using an animated plot. 
+The gganimate package makes it easy to animate ggplot2 graphics.
+This websiteLinks to an external site. has a great Getting StartedLinks to an external site. tutorial on how to make animated visualizations.
+```{r}
+animated_plot <- ggplot(data = data, mapping = aes(x = log(daily_income), y = happiness)) +
+  geom_point(aes(color = country), size = 3, alpha = 0.7) +
+  geom_smooth(method = "lm", se = FALSE, color = "blue", alpha = 0.5) +
+  transition_states(
+    year,
+    transition_length = 2,
+    state_length = 1
+  ) +
+  enter_fade() + 
+  exit_shrink() +
+  ease_aes('sine-in-out') +
+  labs(
+    x = "log(Daily Income)", 
+    y = "Happiness Score", 
+    title = "Happiness vs Daily Income by Country",
+    subtitle = "Year: {closest_state}",
+    color = "Country") +
+  theme_minimal()
+
+animated_gif <- animate(animated_plot, width = 800, height = 600, fps = 10)
+anim_save("happiness_animation.gif", animated_gif)
+```
+
+
+
+2.2 Linear Regression
+Fit a simple linear regression model for the relationship between the variables you selected.
+
+To perform your linear regression, you will likely want to summarize your data so you have one x value and one y value per country. You may do this by averaging (or taking the median) across all years, averaging across a subset of years, or picking a year of particular interest. Make sure you discuss your decision in your written report.
+
+If you did not do this for your first visualization in 2.1, please include a scatterplot of the data that you will use in your regression model. You should be able to plot the exact regression line that you fit on this plot. This plot may also reveal that you need to transform the x or the y variable so that they show a linear relationship.
+
+```{r}
+model <- lm(happiness ~ log(daily_income), data = grouped_data)
+augment(model, grouped_data) %>% 
+  kable()
+```
+
+
+Report the coefficients of your fitted model, either in text, or using a nicely formatted table.
+
+You may want to use LaTeX to nicely format your regression model if you report it in text.
+LaTeX allows us to easily typeset complicated mathematical formulas. You can include LaTeX math within a Quarto document with $’s.
+E.g., basic infoLinks to an external site. on adding equations to a Quarto doc.
+
+
+```{r}
+
+```
+
+2.3 Model Fit
+
+The goal of regression is to account for as much variability in the response values as we can. To assess how “good” of a regression model you have, look at how much of the variability in the response was accounted for by your regression.
+
+The variance in your fitted values represents the amount of variability in the response that was accounted for by the explanatory variable. The variance in the residuals represents the amount of variability in the responses that was not accounted for.
+
+Make a nicely formatted table that presents the following:
+
+The variance in the response values. (A)
+The variance in the fitted values from your regression model. (B)
+The variance in the residuals from your regression model.
+The model R2 (B / A)
+You should format your table nicely using either the kable and kableExtra or gt
+
+kableLinks to an external site. – nice, basic HTML tables with the kable() function.
+
+The kableExtra packageLinks to an external site. – additional styling features of your HTML table.
+
+The gtLinks to an external site. package - create more sophisticated, report-ready tables.
+
+```{r}
+
+```
+
+
+Discuss the proportion of the variability in the response values that was accounted for by your regression model. What does this suggest about the “quality” of your model?
+

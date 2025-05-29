@@ -33,7 +33,6 @@ In this analysis, we use data collected by Gallup World Poll on November 20, 202
 
 We believe that as daily income increases, so does the happiness score (WHR). Typically higher incomes means more financial freedom, this lowers the stress that is built up from worrying about financial problems like cost of living. In the article, “Does more money correlate with greater happiness?” by Michele W. Berger, Matthew Killingsworth argues that “for most people larger incomes are associated with greater happiness” (Berger 2023).
 
-
 ```{r}
 data1 <- read_csv("hapiscore_whr.csv", show_col_types = F)
 data2 <- read_csv("mincpcap_cppp.csv", show_col_types = F)
@@ -65,18 +64,17 @@ kable(sample_n(data, size = 10), col.names = c("Country", "Year", "Happiness"," 
 
 Berger, Michele W. “Does More Money Correlate with Greater Happiness?” Penn Today, University of Pennsylvania, 6 Mar. 2023, penntoday.upenn.edu/news/does-more-money-correlate-greater-happiness-Penn-Princeton-research.
 
-Helliwell, John F., et al. \"World Happiness Report 2024.\" The World Happiness Report, 20 Mar. 2024, [worldhappiness.report/ed/2024/](http://worldhappiness.report/ed/2024/).
+Helliwell, John F., et al. "World Happiness Report 2024." The World Happiness Report, 20 Mar. 2024, [worldhappiness.report/ed/2024/](http://worldhappiness.report/ed/2024/).
 
-\"Poverty and Inequality Platform.\" Poverty and Inequality Platform, 2022, [pip.worldbank.org/#](http://pip.worldbank.org/#). 
-
+"Poverty and Inequality Platform." Poverty and Inequality Platform, 2022, [pip.worldbank.org/#](http://pip.worldbank.org/#).
 
 ## PC 4
 ### Data Visualization
+
 Create two visualizations exploring the following:
 
-The relationship between the two quantitative variables you are investigating.
-Remember: your response variable should be on the y-axis and your explanatory variable should be on the x-axis.
-You may want to aggregate the values for each country over all years in the data (so each point is one country)
+The relationship between the two quantitative variables you are investigating. Remember: your response variable should be on the y-axis and your explanatory variable should be on the x-axis. You may want to aggregate the values for each country over all years in the data (so each point is one country)
+
 ```{r}
 grouped_data <- data %>% 
   group_by(country) %>% 
@@ -93,11 +91,14 @@ ggplot(data = grouped_data, mapping = aes(x = log(daily_income), y = happiness))
 
 ```
 
+
 Present and discuss visualizations of the relationship between the variables.
 
 We used the mean score of the Happiness score and Daily Income for each country. The relationship of the varaibles followed a logarithmic distribution which we then transformed to get a linear relationship by using the logrithmic function on Daily Income. We then get a nicely formated linear relationship between the log of Daily Income and Happiness Score. 
 
 How this relationship (from #1) has changed over time using an animated plot. 
+
+
 ```{r}
 animated_plot <- ggplot(data = data, mapping = aes(x = log(daily_income), y = happiness)) +
   geom_point() +
@@ -123,9 +124,11 @@ animate(animated_plot,
         fps = 10,
         renderer = gifski_renderer("happiness_animation.gif"))
 ```
+
 ![](happiness_animation.gif)
 
 ### Linear Regression
+
 Fit a simple linear regression model for the relationship between the variables you selected.
 
 To perform your linear regression, you will likely want to summarize your data so you have one x value and one y value per country. You may do this by averaging (or taking the median) across all years, averaging across a subset of years, or picking a year of particular interest. Make sure you discuss your decision in your written report.
@@ -136,17 +139,13 @@ If you did not do this for your first visualization in 2.1, please include a sca
 model <- lm(happiness ~ log(daily_income), data = grouped_data)
 ```
 
+
 Describe the statistical method used – linear regression.
 
 We made a model to predict Happiness Score based on the log of Daily Income for each country. 
 
 
-Report the coefficients of your fitted model, either in text, or using a nicely formatted table.
-
-You may want to use LaTeX to nicely format your regression model if you report it in text.
-LaTeX allows us to easily typeset complicated mathematical formulas. You can include LaTeX math within a Quarto document with $’s.
-E.g., basic infoLinks to an external site. on adding equations to a Quarto doc.
-
+You may want to use LaTeX to nicely format your regression model if you report it in text. LaTeX allows us to easily typeset complicated mathematical formulas. You can include LaTeX math within a Quarto document with \$’s. E.g., basic infoLinks to an external site. on adding equations to a Quarto doc.
 
 ```{r}
 tidy(model$coefficients) %>% 
@@ -171,11 +170,7 @@ The variance in your fitted values represents the amount of variability in the r
 
 Make a nicely formatted table that presents the following:
 
-The variance in the response values. (A)
-The variance in the fitted values from your regression model. (B)
-The variance in the residuals from your regression model.
-The model R2 (B / A)
-You should format your table nicely using either the kable and kableExtra or gt
+The variance in the response values. (A) The variance in the fitted values from your regression model. (B) The variance in the residuals from your regression model. The model R2 (B / A) You should format your table nicely using either the kable and kableExtra or gt
 
 kableLinks to an external site. – nice, basic HTML tables with the kable() function.
 
@@ -185,8 +180,15 @@ The gtLinks to an external site. package - create more sophisticated, report-rea
 
 ```{r}
 glance(model) %>%  
-  kable() %>% 
-  kableExtra::kable_classic()
+  kable(col.names = c("R-squared", "Adjusted R-squared", "sigma",
+                      "statistic", "p-value", "df", "logLik",
+                      "AIC", "BIC", "deviance", "df resid", "n"),
+        caption = "n = number of observations in this model") %>% 
+  kableExtra::kable_classic() %>%
+  row_spec(0, bold = TRUE) %>%
+  add_header_above(bold = TRUE, c("Explained Variation Table" = 12)) %>%
+  remove_column(c(8:9, 11))
+  
 ```
 
 
@@ -197,4 +199,3 @@ Describe the fit of the regression model (both in table and written format).
 Discuss the proportion of the variability in the response values that was accounted for by your regression model. What does this suggest about the “quality” of your model?
 
 The proportion of variability for Happiness Score explained by the log of daily income is .7228, which means that 72.28% of a variablility in Happiness Score can be explained by the log of daily income. This suggests that the quality of our model is good.
-

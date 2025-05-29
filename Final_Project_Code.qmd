@@ -157,7 +157,8 @@ E.g., basic infoLinks to an external site. on adding equations to a Quarto doc.
 
 
 ```{r}
-tidy(model)
+tidy(model$coefficients) %>% 
+  kable(col.names = c("Predictor Names", "Regression Coefficients"), caption = "Table of Coefficients for Fitted Model", align = 'c')
 ```
 
 ### Model Fit

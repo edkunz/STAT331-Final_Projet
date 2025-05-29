@@ -69,6 +69,7 @@ Helliwell, John F., et al. "World Happiness Report 2024." The World Happiness Re
 "Poverty and Inequality Platform." Poverty and Inequality Platform, 2022, [pip.worldbank.org/#](http://pip.worldbank.org/#).
 
 ## PC 4
+
 ### Data Visualization
 
 Create two visualizations exploring the following:
@@ -91,13 +92,11 @@ ggplot(data = grouped_data, mapping = aes(x = log(daily_income), y = happiness))
 
 ```
 
-
 Present and discuss visualizations of the relationship between the variables.
 
-We used the mean score of the Happiness score and Daily Income for each country. The relationship of the varaibles followed a logarithmic distribution which we then transformed to get a linear relationship by using the logrithmic function on Daily Income. We then get a nicely formated linear relationship between the log of Daily Income and Happiness Score. 
+We used the mean score of the Happiness score and Daily Income for each country. The relationship of the varaibles followed a logarithmic distribution which we then transformed to get a linear relationship by using the logrithmic function on Daily Income. We then get a nicely formated linear relationship between the log of Daily Income and Happiness Score.
 
-How this relationship (from #1) has changed over time using an animated plot. 
-
+How this relationship (from #1) has changed over time using an animated plot.
 
 ```{r}
 animated_plot <- ggplot(data = data, mapping = aes(x = log(daily_income), y = happiness)) +
@@ -139,11 +138,9 @@ If you did not do this for your first visualization in 2.1, please include a sca
 model <- lm(happiness ~ log(daily_income), data = grouped_data)
 ```
 
-
 Describe the statistical method used – linear regression.
 
-We made a model to predict Happiness Score based on the log of Daily Income for each country. 
-
+We made a model to predict Happiness Score based on the log of Daily Income for each country.
 
 You may want to use LaTeX to nicely format your regression model if you report it in text. LaTeX allows us to easily typeset complicated mathematical formulas. You can include LaTeX math within a Quarto document with \$’s. E.g., basic infoLinks to an external site. on adding equations to a Quarto doc.
 
@@ -158,13 +155,13 @@ tidy(model$coefficients) %>%
 
 Present the estimated regression model (in notation).
 
-Predicted Happpiness Score = 31.59 + 8.73*log(Daily_Income)
+Predicted Happpiness Score = 31.59 + 8.73\*log(Daily_Income)
 
 Interpret the linear regression coefficients (in context).
 
 Assuming that log(daily_income) is 0 we assume that the happiness score for a country would be 31.59.
 
-If we multiply Daily Income by e, we preduict a chnage of 8.73 in the mean Happiness Score. 
+If we multiply Daily Income by e, we preduict a chnage of 8.73 in the mean Happiness Score.
 
 ### Model Fit
 
@@ -174,10 +171,7 @@ The variance in your fitted values represents the amount of variability in the r
 
 Make a nicely formatted table that presents the following:
 
-The variance in the response values. (A) 
-The variance in the fitted values from your regression model. (B) 
-The variance in the residuals from your regression model.
-The model R2 (B / A) 
+The variance in the response values. (A) The variance in the fitted values from your regression model. (B) The variance in the residuals from your regression model. The model R2 (B / A)
 
 ```{r}
 glance(model) %>%  
@@ -188,14 +182,14 @@ glance(model) %>%
   kableExtra::kable_classic() %>%
   row_spec(0, bold = TRUE) %>%
   add_header_above(bold = TRUE, c("Explained Variation Table" = 12)) %>%
-  remove_column(c(8:9, 11))
+  remove_column(c(4:10))
+
+model %>%
+  augment()
   
 ```
 
-
 Describe the fit of the regression model (both in table and written format).
-
-
 
 Discuss the proportion of the variability in the response values that was accounted for by your regression model. What does this suggest about the “quality” of your model?
 

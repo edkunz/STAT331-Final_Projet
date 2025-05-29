@@ -72,8 +72,7 @@ Helliwell, John F., et al. \"World Happiness Report 2024.\" The World Happiness 
 
 ## PC 4
 
-
-Written Components:
+### Written Components:
 
 Present and discuss visualizations of the relationship between the variables.
 
@@ -85,7 +84,7 @@ Interpret the linear regression coefficients (in context).
 
 Describe the fit of the regression model (both in table and written format).
 
-2.1 Data Visualization
+### Data Visualization
 Create two visualizations exploring the following:
 
 The relationship between the two quantitative variables you are investigating.
@@ -138,7 +137,7 @@ animate(animated_plot,
 ```
 ![](happiness_animation.gif)
 
-2.2 Linear Regression
+### Linear Regression
 Fit a simple linear regression model for the relationship between the variables you selected.
 
 To perform your linear regression, you will likely want to summarize your data so you have one x value and one y value per country. You may do this by averaging (or taking the median) across all years, averaging across a subset of years, or picking a year of particular interest. Make sure you discuss your decision in your written report.
@@ -161,7 +160,7 @@ E.g., basic infoLinks to an external site. on adding equations to a Quarto doc.
 tidy(model)
 ```
 
-2.3 Model Fit
+### Model Fit
 
 The goal of regression is to account for as much variability in the response values as we can. To assess how “good” of a regression model you have, look at how much of the variability in the response was accounted for by your regression.
 

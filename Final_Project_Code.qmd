@@ -71,19 +71,6 @@ Helliwell, John F., et al. \"World Happiness Report 2024.\" The World Happiness 
 
 
 ## PC 4
-
-### Written Components:
-
-Present and discuss visualizations of the relationship between the variables.
-
-Describe the statistical method used – linear regression.
-
-Present the estimated regression model (in notation).
-
-Interpret the linear regression coefficients (in context).
-
-Describe the fit of the regression model (both in table and written format).
-
 ### Data Visualization
 Create two visualizations exploring the following:
 
@@ -106,10 +93,11 @@ ggplot(data = grouped_data, mapping = aes(x = log(daily_income), y = happiness))
 
 ```
 
+Present and discuss visualizations of the relationship between the variables.
+
+We used the mean score of the Happiness score and Daily Income for each country. The relationship of the varaibles followed a logarithmic distribution which we then transformed to get a linear relationship by using the logrithmic function on Daily Income. We then get a nicely formated linear relationship between the log of Daily Income and Happiness Score. 
 
 How this relationship (from #1) has changed over time using an animated plot. 
-The gganimate package makes it easy to animate ggplot2 graphics.
-This websiteLinks to an external site. has a great Getting StartedLinks to an external site. tutorial on how to make animated visualizations.
 ```{r}
 animated_plot <- ggplot(data = data, mapping = aes(x = log(daily_income), y = happiness)) +
   geom_point() +
@@ -148,6 +136,10 @@ If you did not do this for your first visualization in 2.1, please include a sca
 model <- lm(happiness ~ log(daily_income), data = grouped_data)
 ```
 
+Describe the statistical method used – linear regression.
+
+We made a model to predict Happiness Score based on the log of Daily Income for each country. 
+
 
 Report the coefficients of your fitted model, either in text, or using a nicely formatted table.
 
@@ -158,8 +150,18 @@ E.g., basic infoLinks to an external site. on adding equations to a Quarto doc.
 
 ```{r}
 tidy(model$coefficients) %>% 
-  kable(col.names = c("Predictor Names", "Regression Coefficients"), caption = "Table of Coefficients for Fitted Model", align = 'c')
+  kable(col.names = c("Predictor Names", "Regression Coefficients"), caption = "Table of Coefficients for Fitted Model", align = 'c', digits = 2)
 ```
+
+Present the estimated regression model (in notation).
+
+Predicted Happpiness Score = 31.59 + 8.73*log(Daily_Income)
+
+Interpret the linear regression coefficients (in context).
+
+Assuming that log(daily_income) is 0 we assume that the happiness score for a country would be 31.59.
+
+If we multiply Daily Income by e, we preduict a chnage of 8.73 in the mean Happiness Score. 
 
 ### Model Fit
 
@@ -186,6 +188,10 @@ glance(model) %>%
   kable() %>% 
   kableExtra::kable_classic()
 ```
+
+
+Describe the fit of the regression model (both in table and written format).
+
 
 
 Discuss the proportion of the variability in the response values that was accounted for by your regression model. What does this suggest about the “quality” of your model?

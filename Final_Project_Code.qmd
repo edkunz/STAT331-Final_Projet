@@ -98,7 +98,6 @@ We used the mean score of the Happiness score and Daily Income for each country.
 
 How this relationship (from #1) has changed over time using an animated plot. 
 
-
 ```{r}
 animated_plot <- ggplot(data = data, mapping = aes(x = log(daily_income), y = happiness)) +
   geom_point() +
@@ -142,10 +141,7 @@ model <- lm(happiness ~ log(daily_income), data = grouped_data)
 
 Describe the statistical method used – linear regression.
 
-We made a model to predict Happiness Score based on the log of Daily Income for each country. 
-
-
-You may want to use LaTeX to nicely format your regression model if you report it in text. LaTeX allows us to easily typeset complicated mathematical formulas. You can include LaTeX math within a Quarto document with \$’s. E.g., basic infoLinks to an external site. on adding equations to a Quarto doc.
+We made a model to predict the mean Happiness Score based on the log of the mean Daily Income for each country. 
 
 ```{r}
 #| warning: false

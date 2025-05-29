@@ -113,7 +113,7 @@ The gganimate package makes it easy to animate ggplot2 graphics.
 This websiteLinks to an external site. has a great Getting StartedLinks to an external site. tutorial on how to make animated visualizations.
 ```{r}
 animated_plot <- ggplot(data = data, mapping = aes(x = log(daily_income), y = happiness)) +
-  geom_point(aes(color = country), size = 3, alpha = 0.7) +
+  geom_point() +
   geom_smooth(method = "lm", se = FALSE, color = "blue", alpha = 0.5) +
   transition_states(
     year,
@@ -127,18 +127,16 @@ animated_plot <- ggplot(data = data, mapping = aes(x = log(daily_income), y = ha
     x = "log(Daily Income)", 
     y = "Happiness Score", 
     title = "Happiness vs Daily Income by Country",
-    subtitle = "Year: {closest_state}",
-    color = "Country") +
+    subtitle = "Year: {closest_state}") +
   theme_minimal()
 
-anim_save(filename = "happiness_animation.gif", 
-          plot = animated_plot, 
-          width = 800, 
-          height = 600, 
-          fps = 10)
+animate(animated_plot, 
+        width = 800, 
+        height = 600, 
+        fps = 10,
+        renderer = gifski_renderer("happiness_animation.gif"))
 ```
-
-
+![](happiness_animation.gif)
 
 2.2 Linear Regression
 Fit a simple linear regression model for the relationship between the variables you selected.
@@ -149,8 +147,6 @@ If you did not do this for your first visualization in 2.1, please include a sca
 
 ```{r}
 model <- lm(happiness ~ log(daily_income), data = grouped_data)
-augment(model, grouped_data) %>% 
-  kable()
 ```
 
 
@@ -162,7 +158,7 @@ E.g., basic infoLinks to an external site. on adding equations to a Quarto doc.
 
 
 ```{r}
-
+tidy(model)
 ```
 
 2.3 Model Fit
@@ -186,9 +182,13 @@ The kableExtra packageLinks to an external site. – additional styling features
 The gtLinks to an external site. package - create more sophisticated, report-ready tables.
 
 ```{r}
-
+glance(model) %>%  
+  kable() %>% 
+  kableExtra::kable_classic()
 ```
 
 
 Discuss the proportion of the variability in the response values that was accounted for by your regression model. What does this suggest about the “quality” of your model?
+
+The proportion of variability for Happiness Score explained by the log of daily income is .7228, which means that 72.28% of a variablility in Happiness Score can be explained by the log of daily income. This suggests that the quality of our model is good.
 

@@ -148,8 +148,12 @@ We made a model to predict Happiness Score based on the log of Daily Income for 
 You may want to use LaTeX to nicely format your regression model if you report it in text. LaTeX allows us to easily typeset complicated mathematical formulas. You can include LaTeX math within a Quarto document with \$’s. E.g., basic infoLinks to an external site. on adding equations to a Quarto doc.
 
 ```{r}
+#| warning: false
 tidy(model$coefficients) %>% 
-  kable(col.names = c("Predictor Names", "Regression Coefficients"), caption = "Table of Coefficients for Fitted Model", align = 'c', digits = 2)
+  kable(col.names = c("Predictor Names", "Regression Coefficients"), align = 'c', digits = 2) %>% 
+  kableExtra::kable_classic() %>%
+  row_spec(0, bold = TRUE) %>%
+  add_header_above(bold = TRUE, c("Table of Coefficients for Fitted Model" = 2))
 ```
 
 Present the estimated regression model (in notation).
@@ -170,13 +174,10 @@ The variance in your fitted values represents the amount of variability in the r
 
 Make a nicely formatted table that presents the following:
 
-The variance in the response values. (A) The variance in the fitted values from your regression model. (B) The variance in the residuals from your regression model. The model R2 (B / A) You should format your table nicely using either the kable and kableExtra or gt
-
-kableLinks to an external site. – nice, basic HTML tables with the kable() function.
-
-The kableExtra packageLinks to an external site. – additional styling features of your HTML table.
-
-The gtLinks to an external site. package - create more sophisticated, report-ready tables.
+The variance in the response values. (A) 
+The variance in the fitted values from your regression model. (B) 
+The variance in the residuals from your regression model.
+The model R2 (B / A) 
 
 ```{r}
 glance(model) %>%  

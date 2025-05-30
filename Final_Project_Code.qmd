@@ -192,4 +192,4 @@ The variance in Happiness Score is 133.57. 82.10 of this is accounted for by the
 
 Discuss the proportion of the variability in the response values that was accounted for by your regression model. What does this suggest about the “quality” of your model?
 
-The proportion of variability for Happiness Score explained by the log of daily income is .7228, which means that 72.28% of a variablility in Happiness Score can be explained by the log of daily income. This suggests that the quality of our model is good.
+The proportion of variability for Happiness Score explained by the log of daily income is .7228, which means that 72.28% of the variability in Happiness Score can be explained by the log of daily income. This suggests that the quality of our model is good.

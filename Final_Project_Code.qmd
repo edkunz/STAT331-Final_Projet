@@ -136,7 +136,7 @@ model <- lm(happiness ~ log(daily_income), data = grouped_data)
 
 Describe the statistical method used – linear regression.
 
-We made a model to predict the mean Happiness Score based on the log of the mean Daily Income for each country, from the years 2005 to 2023. 
+We made a model to predict the mean Happiness Score based on the log of the mean Daily Income for each country, using the years 2005 to 2023. 
 
 ```{r}
 #| warning: false
@@ -149,13 +149,13 @@ tidy(model$coefficients) %>%
 
 Present the estimated regression model (in notation).
 
-Predicted Happpiness Score = 31.59 + 8.73\*log(Daily_Income)
+Predicted Happpiness Score = 31.59 + 8.73*log(Daily_Income)
 
 Interpret the linear regression coefficients (in context).
 
-We predict that a country with a log of their mean daily income equal to 0 will have a mean happiness score of 31.59 between the years 2005 to 2023.
+We predict that a country with a log of their mean daily income equal to 0 will have a mean happiness score of 31.59 over the years 2005 to 2023.
 
-If we multiply the mean Daily Income by e, we predict a chnage of 8.73 in the mean Happiness Score. 
+If we multiply the mean Daily Income by e, we predict a increase of 8.73 in the mean Happiness Score. 
 
 ### Model Fit
 
@@ -186,6 +186,8 @@ data.frame(
 ```
 
 Describe the fit of the regression model (both in table and written format).
+
+
 
 Discuss the proportion of the variability in the response values that was accounted for by your regression model. What does this suggest about the “quality” of your model?
 

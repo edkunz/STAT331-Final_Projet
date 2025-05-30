@@ -187,6 +187,7 @@ data.frame(
 
 Describe the fit of the regression model (both in table and written format).
 
+The variance in Happiness Score is 133.57. 82.10 of this is accounted for by the regression model. The other 31.48 is unexplained. The R squared value of 0.7228 means that 72.28% of the variability in happiness can be explained by the log of daily income. This is a rather high percent and suggests that this is a well fit model that is able to identify the main trend in this data. 
 
 
 Discuss the proportion of the variability in the response values that was accounted for by your regression model. What does this suggest about the “quality” of your model?

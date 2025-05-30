@@ -168,24 +168,21 @@ Make a nicely formatted table that presents the following:
 The variance in the response values. (A) The variance in the fitted values from your regression model. (B) The variance in the residuals from your regression model. The model R2 (B / A)
 
 ```{r}
-glance(model) %>%  
-  kable(col.names = c("R-squared", "Adjusted R-squared", "sigma",
-                      "statistic", "p-value", "df", "logLik",
-                      "AIC", "BIC", "deviance", "df resid", "n"),
-        caption = "n = number of observations in this model") %>% 
+aug_data <- model %>%
+  augment()
+
+data.frame(
+  Var_Response_A = var(aug_data$happiness),
+  Var_Fitted_B = var(aug_data$.fitted),
+  Var_Residuals = var(aug_data$.resid),
+  R_Squared = summary(model)$r.squared
+) %>% 
+  kable(align = "c") %>%
   kableExtra::kable_classic() %>%
   row_spec(0, bold = TRUE) %>%
-  add_header_above(bold = TRUE, c("Explained Variation Table" = 12)) %>%
-<<<<<<< HEAD
-  remove_column(c(8:9, 11))
-
-=======
-  remove_column(c(4:10))
-
-model %>%
-  augment()
-  
->>>>>>> 54d563e94674c4dd6f5adc843be5e400a8c822ef
+  add_header_above(bold = TRUE, c("Model Variance Table" = 4)) %>%
+  kable_styling(full_width = TRUE, bootstrap_options = c("striped", "bordered"))
+# https://broom.tidymodels.org/reference/augment.lm.html
 ```
 
 Describe the fit of the regression model (both in table and written format).

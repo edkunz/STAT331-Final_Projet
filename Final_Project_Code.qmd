@@ -6,6 +6,7 @@ format:
   html:
     embed-resources: true
     code-tools: true
+    code-fold: true
     toc: true
 editor: source
 execute: 
@@ -149,7 +150,7 @@ tidy(model$coefficients) %>%
 
 Present the estimated regression model (in notation).
 
-Predicted Happpiness Score = 31.59 + 8.73\*log(Daily_Income)
+Predicted Happiness Score = 31.59 + 8.73\*log(Daily_Income)
 
 Interpret the linear regression coefficients (in context).
 

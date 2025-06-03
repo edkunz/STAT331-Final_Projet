@@ -71,8 +71,8 @@ Helliwell, John F., et al. "World Happiness Report 2024." The World Happiness Re
 ## PC 4
 
 ### Data Visualization
-Create two visualizations exploring the following:
-The relationship between the two quantitative variables you are investigating.
+
+Create two visualizations exploring the following: The relationship between the two quantitative variables you are investigating.
 
 ```{r}
 grouped_data <- data %>% 
@@ -90,7 +90,7 @@ ggplot(data = grouped_data, mapping = aes(x = log(daily_income), y = happiness))
 
 ```
 
-How this relationship (from #1) has changed over time using an animated plot. 
+How this relationship (from #1) has changed over time using an animated plot.
 
 ```{r}
 animated_plot <- ggplot(data = data, mapping = aes(x = log(daily_income), y = happiness)) +
@@ -122,9 +122,9 @@ animate(animated_plot,
 
 Present and discuss visualizations of the relationship between the variables.
 
-We used the mean score of the Happiness score and Daily Income for each country. The relationship of the varaibles followed a logarithmic distribution which we then transformed to get a linear relationship by using the logrithmic function on mean of Daily Income over the years 2005 to 2023. We then get a nicely formated linear relationship between the log of the mean Daily Income and mean Happiness Score. 
+We used the mean score of the Happiness score and Daily Income for each country. The relationship of the varaibles followed a logarithmic distribution which we then transformed to get a linear relationship by using the logrithmic function on mean of Daily Income over the years 2005 to 2023. We then get a nicely formated linear relationship between the log of the mean Daily Income and mean Happiness Score.
 
-Based on the animated plot the line over time stays relativly the same with some years having a stronger relationship than other years. We still see a positive relationship in all years between the log of the mean daily income and happiness score which indicates that the log of the mean daily income could be a strong predictor of the happiness score of a country. 
+Based on the animated plot the line over time stays relativly the same with some years having a stronger relationship than other years. We still see a positive relationship in all years between the log of the mean daily income and happiness score which indicates that the log of the mean daily income could be a strong predictor of the happiness score of a country.
 
 ### Linear Regression
 
@@ -136,7 +136,7 @@ model <- lm(happiness ~ log(daily_income), data = grouped_data)
 
 Describe the statistical method used – linear regression.
 
-We made a model to predict the mean Happiness Score based on the log of the mean Daily Income for each country, from the years 2005 to 2023. 
+We made a model to predict the mean Happiness Score based on the log of the mean Daily Income for each country, using the years 2005 to 2023.
 
 ```{r}
 #| warning: false
@@ -153,9 +153,9 @@ Predicted Happpiness Score = 31.59 + 8.73\*log(Daily_Income)
 
 Interpret the linear regression coefficients (in context).
 
-We predict that a country with a log of their mean daily income equal to 0 will have a mean happiness score of 31.59 between the years 2005 to 2023.
+We predict that a country with a log of their mean daily income equal to 0 will have a mean happiness score of 31.59 over the years 2005 to 2023.
 
-If we multiply the mean Daily Income by e, we predict a chnage of 8.73 in the mean Happiness Score. 
+If we multiply the mean Daily Income by e, we predict a increase of 8.73 in the mean Happiness Score.
 
 ### Model Fit
 
@@ -187,6 +187,58 @@ data.frame(
 
 Describe the fit of the regression model (both in table and written format).
 
+The total variance in Happiness Score is 133.57. 82.10 of this is accounted for by the regression model based on the log of the mean daily income. The other 31.48 is unexplained. The R squared value of 0.7228 means that 72.28% of the variability in happiness can be explained by the log of daily income. The value comes from dividing the variance in Happinesss Score explained by the model by the toal variance in Happiness Score. This is a rather high percent and suggests that this is a well fit model that is able to identify the main trend in this data.
+
 Discuss the proportion of the variability in the response values that was accounted for by your regression model. What does this suggest about the “quality” of your model?
 
-The proportion of variability for Happiness Score explained by the log of daily income is .7228, which means that 72.28% of a variablility in Happiness Score can be explained by the log of daily income. This suggests that the quality of our model is good.
+The proportion of variability for Happiness Score explained by the log of daily income is .7228, which means that 72.28% of the variability in Happiness Score can be explained by the log of daily income. This suggests that the quality of our model is good.
+
+## PC5
+
+### 3.1 Implement k-fold cross validation
+
+```{r}
+
+process_folds <- function(index) {
+    train_data <- data[-index, ]
+    val_data <- data[index, ]
+    model <- lm(happiness ~ daily_income, data = train_data)
+    predict <- predict(model, newdata = val_data)
+    r2 <- (var(predict) / var(val_data[["happiness"]]))
+    return(r2)
+  }
+
+kfold_cv <- function(data, k = 16, seed = 23) {
+  set.seed(seed)
+  n <- nrow(data)
+  fold_ids <- sample(rep_len(1:k, length.out = n))
+  folds <- map(1:k, ~ which(fold_ids == .x))
+  r2_values <- map_dbl(folds, process_folds)
+  results <- data.frame(fold = 1:k, R2 = r2_values)
+  return(results)
+}
+
+k_fold <- kfold_cv(grouped_data)
+k_fold
+
+```
+
+Explain the process of cross validation
+
+### 3.2 Plot the results
+
+Plot the distribution of the R2 values from your cross validation (there should be one value from each fold). Include in your plot an indication of the average R2 value across all folds.
+
+```{r}
+ggplot(data = k_fold)+
+  geom_col(mapping = aes(x = fold, y = R2))+
+  geom_hline(yintercept = mean(k_fold$R2), color = "blue") +
+  labs(title = "R-Squared Values per Fold",
+       x = "Fold Number used for Test Data",
+       y = "R-Squared Value", 
+       caption = "Average R-squared value is shown by Blue Line")
+```
+
+Present and discuss the implications of the results of cross validation for the quality of your model
+
+Discuss the implications of the values shown in this plot. How predictive is your model? How much does the performance vary between folds? Is there any evidence of overfitting?

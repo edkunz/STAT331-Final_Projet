@@ -193,3 +193,59 @@ The total variance in Happiness Score is 133.57. 82.10 of this is accounted for 
 Discuss the proportion of the variability in the response values that was accounted for by your regression model. What does this suggest about the “quality” of your model?
 
 The proportion of variability for Happiness Score explained by the log of daily income is .7228, which means that 72.28% of the variability in Happiness Score can be explained by the log of daily income. This suggests that the quality of our model is good.
+
+
+## PC5
+
+### 3.1 Implement k-fold cross validation
+
+```{r}
+
+process_folds <- function(index) {
+    train_data <- data[-index, ]
+    val_data <- data[index, ]
+    model <- lm(happiness ~ daily_income, data = train_data)
+    predict <- predict(model, newdata = val_data)
+    r2 <- (var(predict) / var(val_data[["happiness"]]))
+    return(r2)
+  }
+
+kfold_cv <- function(data, k = 16, seed = 23) {
+  set.seed(seed)
+  n <- nrow(data)
+  fold_ids <- sample(rep_len(1:k, length.out = n))
+  folds <- map(1:k, ~ which(fold_ids == .x))
+  r2_values <- map_dbl(folds, process_folds)
+  results <- data.frame(fold = 1:k, R2 = r2_values)
+  return(results)
+}
+
+k_fold <- kfold_cv(grouped_data)
+k_fold
+
+```
+
+Explain the process of cross validation
+
+
+### 3.2 Plot the results
+Plot the distribution of the R2 values from your cross validation (there should be one value from each fold). Include in your plot an indication of the average R2 value across all folds. 
+
+```{r}
+ggplot(data = k_fold)+
+  geom_col(mapping = aes(x = fold, y = R2))+
+  geom_hline(yintercept = mean(k_fold$R2), color = "blue") +
+  labs(title = "R-Squared Values per Fold",
+       x = "Fold Number used for Test Data",
+       y = "R-Squared Value", 
+       caption = "Average R-squared value is shown by Blue Line")
+```
+
+Present and discuss the implications of the results of cross validation for the quality of your model
+
+Discuss the implications of the values shown in this plot. How predictive is your model? How much does the performance vary between folds? Is there any evidence of overfitting?
+
+
+
+
+

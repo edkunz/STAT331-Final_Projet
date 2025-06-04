@@ -1,0 +1,225 @@
+---
+title: "Final_Project_Code"
+date: now
+author: "Elliot Kunz, Andrea Pareja, Anson Wu, Caroline Ritchey"
+format: 
+  html:
+    embed-resources: true
+    code-tools: true
+    toc: true
+editor: source
+execute: 
+  error: true
+  echo: true
+  message: false
+  warning: false
+---
+
+
+
+## PC 3
+
+
+
+```{r setup}
+library(tidyverse)
+library(knitr)
+library(kableExtra)
+library(broom)
+library(gganimate)
+```
+
+
+
+### Data Descriptions
+
+In this analysis, we use data collected by Gallup World Poll on November 20, 2024 which contains the national average response to the question of life evaluations. We additionally include information from a dataset provided by Gapminder on the mean daily household per capita income. Our analysis includes the years 2005 - 2023. We omitted any countrys and years who had missing values for either the happiness score or their mean daily household per capita income.
+
+### Hypothesis
+
+We believe that as daily income increases, so does the happiness score (WHR). Typically higher incomes means more financial freedom, this lowers the stress that is built up from worrying about financial problems like cost of living. In the article, “Does more money correlate with greater happiness?” by Michele W. Berger, Matthew Killingsworth argues that “for most people larger incomes are associated with greater happiness” (Berger 2023).
+
+
+
+```{r}
+data1 <- read_csv("hapiscore_whr.csv", show_col_types = F)
+data2 <- read_csv("mincpcap_cppp.csv", show_col_types = F)
+
+
+
+clean_data1 <- data1 %>% 
+  pivot_longer(cols = `2005`:`2023`,
+              names_to = "year",
+              values_to = "happiness")
+  
+
+
+clean_data2 <- data2 %>% 
+  pivot_longer(cols = `1800`:`2100`,
+              names_to = 'year',
+              values_to = "daily_income")
+  
+  
+data <- clean_data1 %>% 
+  inner_join(clean_data2, 
+             by = join_by(country == country, year == year)) %>% 
+  na.omit()
+
+kable(sample_n(data, size = 10), col.names = c("Country", "Year", "Happiness"," Daily Income"), align = "c", digits = 2)
+```
+
+
+
+### Works Cited
+
+Berger, Michele W. “Does More Money Correlate with Greater Happiness?” Penn Today, University of Pennsylvania, 6 Mar. 2023, penntoday.upenn.edu/news/does-more-money-correlate-greater-happiness-Penn-Princeton-research.
+
+Helliwell, John F., et al. "World Happiness Report 2024." The World Happiness Report, 20 Mar. 2024, [worldhappiness.report/ed/2024/](http://worldhappiness.report/ed/2024/).
+
+"Poverty and Inequality Platform." Poverty and Inequality Platform, 2022, [pip.worldbank.org/#](http://pip.worldbank.org/#).
+
+## PC 4
+
+### Data Visualization
+Create two visualizations exploring the following:
+The relationship between the two quantitative variables you are investigating.
+
+
+
+```{r}
+grouped_data <- data %>% 
+  group_by(country) %>% 
+  summarise(happiness = mean(happiness), 
+            daily_income = mean(daily_income))
+
+
+ggplot(data = grouped_data, mapping = aes(x = log(daily_income), y = happiness))+
+  geom_point()+
+  geom_smooth(colour = "blue", method = lm)+
+  labs(x = "Daily Income (log(Mean over the years))", 
+       y = "Happiness Score (Mean over the years)", 
+       title = "Scatterplot of Happiness compared to Daily Income")
+
+```
+
+
+
+How this relationship (from #1) has changed over time using an animated plot. 
+
+
+
+```{r}
+animated_plot <- ggplot(data = data, mapping = aes(x = log(daily_income), y = happiness)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE, color = "blue", alpha = 0.5) +
+  transition_states(
+    year,
+    transition_length = 2,
+    state_length = 1
+  ) +
+  enter_fade() + 
+  exit_shrink() +
+  ease_aes('sine-in-out') +
+  labs(
+    x = "log(Daily Income)", 
+    y = "Happiness Score", 
+    title = "Happiness vs Daily Income by Country",
+    subtitle = "Year: {closest_state}") +
+  theme_minimal()
+
+animate(animated_plot, 
+        width = 800, 
+        height = 600, 
+        fps = 10,
+        renderer = gifski_renderer("happiness_animation.gif"))
+```
+
+
+
+![](happiness_animation.gif)
+
+Present and discuss visualizations of the relationship between the variables.
+
+We used the mean score of the Happiness score and Daily Income for each country. The relationship of the varaibles followed a logarithmic distribution which we then transformed to get a linear relationship by using the logrithmic function on mean of Daily Income over the years 2005 to 2023. We then get a nicely formated linear relationship between the log of the mean Daily Income and mean Happiness Score. 
+
+Based on the animated plot the line over time stays relativly the same with some years having a stronger relationship than other years. We still see a positive relationship in all years between the log of the mean daily income and happiness score which indicates that the log of the mean daily income could be a strong predictor of the happiness score of a country. 
+
+### Linear Regression
+
+Fit a simple linear regression model for the relationship between the variables you selected.
+
+
+
+```{r}
+model <- lm(happiness ~ log(daily_income), data = grouped_data)
+```
+
+
+
+Describe the statistical method used – linear regression.
+
+We made a model to predict the mean Happiness Score based on the log of the mean Daily Income for each country, using the years 2005 to 2023. 
+
+
+
+```{r}
+#| warning: false
+tidy(model$coefficients) %>% 
+  kable(col.names = c("Predictor Names", "Regression Coefficients"), align = 'c', digits = 2) %>% 
+  kableExtra::kable_classic() %>%
+  row_spec(0, bold = TRUE) %>%
+  add_header_above(bold = TRUE, c("Table of Coefficients for Fitted Model" = 2))
+```
+
+
+
+Present the estimated regression model (in notation).
+
+Predicted Happpiness Score = 31.59 + 8.73*log(Daily_Income)
+
+Interpret the linear regression coefficients (in context).
+
+We predict that a country with a log of their mean daily income equal to 0 will have a mean happiness score of 31.59 over the years 2005 to 2023.
+
+If we multiply the mean Daily Income by e, we predict a increase of 8.73 in the mean Happiness Score. 
+
+### Model Fit
+
+The goal of regression is to account for as much variability in the response values as we can. To assess how “good” of a regression model you have, look at how much of the variability in the response was accounted for by your regression.
+
+The variance in your fitted values represents the amount of variability in the response that was accounted for by the explanatory variable. The variance in the residuals represents the amount of variability in the responses that was not accounted for.
+
+Make a nicely formatted table that presents the following:
+
+The variance in the response values. (A) The variance in the fitted values from your regression model. (B) The variance in the residuals from your regression model. The model R2 (B / A)
+
+
+
+```{r}
+aug_data <- model %>%
+  augment()
+
+data.frame(
+  Var_Response_A = var(aug_data$happiness),
+  Var_Fitted_B = var(aug_data$.fitted),
+  Var_Residuals = var(aug_data$.resid),
+  R_Squared = summary(model)$r.squared
+) %>% 
+  kable(align = "c") %>%
+  kableExtra::kable_classic() %>%
+  row_spec(0, bold = TRUE) %>%
+  add_header_above(bold = TRUE, c("Model Variance Table" = 4)) %>%
+  kable_styling(full_width = TRUE, bootstrap_options = c("striped", "bordered"))
+# https://broom.tidymodels.org/reference/augment.lm.html
+```
+
+
+
+Describe the fit of the regression model (both in table and written format).
+
+The variance in Happiness Score is 133.57. 82.10 of this is accounted for by the regression model. The other 31.48 is unexplained. The R squared value of 0.7228 means that 72.28% of the variability in happiness can be explained by the log of daily income. This is a rather high percent and suggests that this is a well fit model that is able to identify the main trend in this data. 
+
+
+Discuss the proportion of the variability in the response values that was accounted for by your regression model. What does this suggest about the “quality” of your model?
+
+The proportion of variability for Happiness Score explained by the log of daily income is .7228, which means that 72.28% of the variability in Happiness Score can be explained by the log of daily income. This suggests that the quality of our model is good.

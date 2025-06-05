@@ -22,21 +22,16 @@ library(knitr)
 library(kableExtra)
 library(broom)
 library(gganimate)
+library(gifski)
 ```
 
 ## Introduction
 
-### Data Descriptions
-
-In this analysis, we use data collected by Gallup World Poll on November 20, 2024 which contains the national average response to the question of life evaluations. We additionally include information from a data set provided by Gapminder on the mean daily household per capital income. Our analysis includes the years 2005 - 2023. We omitted any countries and years who had missing values for either the happiness score or their mean daily household per capital income.
-
-### Hypothesis
-
-We believe that as daily income increases, so does the happiness score (WHR). Typically higher incomes means more financial freedom, this lowers the stress that is built up from worrying about financial problems like cost of living. In the article, “Does more money correlate with greater happiness?” by Michele W. Berger, Matthew Killingsworth argues that “for most people larger incomes are associated with greater happiness” (Berger 2023).
+In this analysis, we use data collected by Gallup World Poll on November 20, 2024 which contains the national average response to the question of life evaluations. We additionally include information from a data set provided by Gapminder on the mean daily household per capital income. Our analysis includes the years 2005 - 2023. We omitted any countries and years who had missing values for either the happiness score or their mean daily household per capital income. We believe that as daily income increases, so does the happiness score (WHR). Typically higher incomes means more financial freedom, this lowers the stress that is built up from worrying about financial problems like cost of living. In the article, “Does more money correlate with greater happiness?” by Michele W. Berger, Matthew Killingsworth argues that “for most people larger incomes are associated with greater happiness” (Berger 2023).
 
 ## Data Cleaning
 
-We transformed both data sets to long format so that they could be joined by year and country. We also removed missing values.
+We transformed both files so they could be joined by year and country which would give us a final data set that contains the Happiness Score and Daily Income for each country and year combination. We also removed any missing values from the data so that the data points were not skewed. The Happiness Score data only had information on the years 2005 to 2023 while the data on Daily Income had information from 1800 to 2100 for each country. The values for daily income past 2024 are all predictions based on the countries daily income. Thus we decided to just use the years between 2005 and 2023 which had actaul information, not predicted, for both daily income and happiness score. Below shows a sample of the data we used moving forward.
 
 ```{r}
 data1 <- read_csv("hapiscore_whr.csv", show_col_types = F)
@@ -62,7 +57,7 @@ kable(sample_n(data, size = 10), col.names = c("Country", "Year", "Happiness"," 
 
 ## Modeling the Relationship between Happiness and Daily Income
 
-### Displaying the Relationship
+The next step in our process was to view the relationship between Happiness Score and Daily Income. Each dot on the scatter plot below represents a Country with their mean Happiness Score and mean Daily Income from 2005 to 2023.
 
 ```{r}
 grouped_data <- data %>% 
@@ -71,20 +66,32 @@ grouped_data <- data %>%
             daily_income = mean(daily_income))
 
 
+ggplot(data = grouped_data, mapping = aes(x = daily_income, y = happiness))+
+  geom_point()+
+  geom_smooth(colour = "blue", method = "lm")+
+  labs(x = "Daily Income (Mean over 2005-2023))", 
+       y = "Happiness Score (Mean over 2005-2023)", 
+       title = "Scatterplot of Happiness compared to Daily Income for each Country")
+
+```
+
+As you can see in the data the when we trty to fit a linear line through the data it does not fit well. Thus we decided to transform the data which after testing, we decided to transform the mean Daily Income for each country using a natural logrithmic transformation. Below is the scatter plot and linear fit of this transformed data.
+
+```{r}
 ggplot(data = grouped_data, mapping = aes(x = log(daily_income), y = happiness))+
   geom_point()+
   geom_smooth(colour = "blue", method = lm)+
   labs(x = "Daily Income (log(Mean over the years))", 
        y = "Happiness Score (Mean over the years)", 
-       title = "Scatterplot of Happiness compared to Daily Income")
+       title = "Scatterplot of Happiness compared to log(Daily Income) for each Country")
 
 ```
 
-This scatter plot shows the mean happiness score compared to daily income. Each dot on the plot represents the mean happiness per log of daily income. Here we can see that the trend of happiness increasing as daily income also increases. 
-
-### Trends Over Time
+Here we can see that the trend of happiness increasing as daily income also increases in a strong positive linear relationship. Thus we can infer that as Daily Income increases we expect an increase in the Happiness Score of a country. However, the above plots only shows the mean over time for each of these countries. We also want to check if this relationship is seen every year of the data and not just on the overall means. Thus we decided to look at the changes in the relationship over time. The plot below shows each countries happiness score compared to daily income for each year between 2005 and 2023.
 
 ```{r}
+#|eval: false
+
 animated_plot <- ggplot(data = data, mapping = aes(x = log(daily_income), y = happiness)) +
   geom_point() +
   geom_smooth(method = "lm", se = FALSE, color = "blue", alpha = 0.5) +
@@ -112,17 +119,13 @@ animate(animated_plot,
 
 ![](happiness_animation.gif)
 
-We used the mean score of the Happiness score and Daily Income for each country. The relationship of the variables followed a logarithmic distribution which we then transformed to get a linear relationship by using the logarithmic function on mean of Daily Income over the years 2005 to 2023. We then get a nicely formatted linear relationship between the log of the mean Daily Income and mean Happiness Score.
-
-Based on the animated plot the line over time stays relativly the same with some years having a stronger relationship than other years. We still see a positive relationship in all years between the log of the mean daily income and happiness score which indicates that the log of the mean daily income could be a strong predictor of the happiness score of a country.
-
-### Linear Regression
+Based on the animated plot the line over time stays relatively the same with some years having a stronger relationship than other years. We still see a positive relationship in all years between the the mean daily income and happiness score which indicates that the mean daily income for each country could be a strong predictor of the happiness score for the country.
 
 ```{r}
 model <- lm(happiness ~ log(daily_income), data = grouped_data)
 ```
 
-We made a model to predict the mean Happiness Score based on the log of the mean Daily Income for each country, using the years 2005 to 2023.
+We also made a linear model to predict the mean Happiness Score based on the log of the mean Daily Income for each country. This will give us a more accurate understanding of the strength of the relationship between Happiness Score and Daily Income.
 
 ```{r}
 #| warning: false
@@ -133,11 +136,9 @@ tidy(model$coefficients) %>%
   add_header_above(bold = TRUE, c("Table of Coefficients for Fitted Model" = 2))
 ```
 
-${\hat{HappinessScore}} = 31.59 + 8.73*log(DailyIncome)$
+Based on the table above the regression equation is: ${\hat{HappinessScore}} = 31.59 + 8.73*log(DailyIncome)$
 
-From this model we predict that a country with a log of their mean daily income equal to 0 will have a mean happiness score of 31.59 over the years 2005 to 2023. If we multiply the mean Daily Income by e (approximatly 2.718), we predict a increase of 8.73 in the mean Happiness Score for the country. This is a significant increase in the Happiness score since the value is a score between 1 and 100. Thus, we predict that whenever Daily Income increases we should see an increase in the Happiness score for a country. 
-
-### Model Fit
+From this model we predict that a country with a log of their mean daily income equal to 0 will have a mean happiness score of 31.59 over the years 2005 to 2023. If we multiply the mean Daily Income by e (approximatly 2.718), we predict a increase of 8.73 in the mean Happiness Score for a country. This is a significant increase in the Happiness score since the value is a score between 1 and 100. Thus, we predict that whenever Daily Income increases we should see an increase in the Happiness score for a country. Below is a table showing the variance of our model which is helpful for analysis of the overall performance of our model.
 
 ```{r}
 aug_data <- model %>%
@@ -157,15 +158,11 @@ data.frame(
 # https://broom.tidymodels.org/reference/augment.lm.html
 ```
 
-The total variance in Happiness Score is 133.57. 82.10 of this is accounted for by the regression model based on the log of the mean daily income. The other 31.48 is unexplained. The R squared value of 0.7228 means that 72.28% of the variability in happiness can be explained by the log of daily income. The value comes from dividing the variance in Happiness Score explained by the model by the total variance in Happiness Score. This is a rather high percent and suggests that this is a well fit model that is able to identify the main trend in this data.
-
-#### Discussion of Quality of the Model
-
-The proportion of variability for Happiness Score explained by the log of daily income is .7228, which means that 72.28% of the variability in Happiness Score can be explained by the log of daily income. This suggests that the quality of our model is good.
+The total variance in Happiness Score is 113.57. 82.10 of this is accounted for by the regression model based on the log of the mean daily income. The other 31.48 is unexplained. For this model, the R squared value of 0.7228 means that 72.28% of the variability in happiness can be explained by the log of daily income. The value comes from dividing the variance in Happiness Score explained by the model by the total variance in Happiness Score. This is a rather high percent and suggests that this is a well fit model that is able to identify the main trend in this data.
 
 ## Cross-Validation
 
-### 3.1 Implementing k-fold cross validation
+However the R-Squared value above is not an accurate final statistic for the amount of variation in Happiness Score of a country that can be explained by their Daily Income. Thus we implimented cross fold validation using 16 fold which gave us an average of 10 countries per fold. We then trained a model one at a time without one these folds and compared the predicted values of the model with the actual values from the fold to test how accurate our original model was. The values shown in the table below show the R-Squared values from each model where the fold was predicted on.
 
 ```{r}
 
@@ -194,10 +191,9 @@ k_fold %>%
   kableExtra::kable_classic() %>%
   row_spec(0, bold = TRUE) %>%
   add_header_above(bold = TRUE, c("R-Squared Value for each Fold" = 2))
-
 ```
 
-### 3.2 Plotting the results
+As you can see from the table there is a lot of variation in the R-Squared for each model. Some are very high like folds 3 and 14 while some are very low like fold 10. Thus this varaition in the values means that sometimees the model is very good at predicting the countries happiness score and sometimes the trained model can not accuratly determine the countries happiness score from the daily income.In the graph below you can see the distribution of R-Squared compared to mean value.
 
 ```{r}
 ggplot(data = k_fold)+
@@ -209,7 +205,7 @@ ggplot(data = k_fold)+
        caption = "Average R-squared value is shown by Blue Line")
 ```
 
-The Average R-squared values, shown by the blue line, falls just below 0.6. This means that less than 60% of the variability in the outcome can be explained by the model. Slightly more than 40% of the variance it still unexplained, which makes the predictive power of this model moderate. There is also a good amount of variability between folds which means that some of them have better predictions than others. 
+The average R-squared values, shown by the blue line, is 0.5629. This means that 56.29% of the variability in Happiness Score can be explained by Daily Income. This is a very differnt prediction than the full model earlier which was 72.28%. However the average R-Squared is a much better predictor thus Daily Income is even less of a predictor of Happiness Score than we previosuly expected. Also now there is slightly more than 40% of the variance it still unexplained compared to around 30% before.
 
 ## Conclusion
 

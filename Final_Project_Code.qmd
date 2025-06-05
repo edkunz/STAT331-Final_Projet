@@ -144,8 +144,6 @@ tidy(model$coefficients) %>%
 
 Present the estimated regression model (in notation).
 
-Predicted Happiness Score = 31.59 + 8.73\*log(Daily_Income)
-
 ${\hat{HappinessScore}} = 31.59 + 8.73*log(DailyIncome)$
 
 Interpret the linear regression coefficients (in context).

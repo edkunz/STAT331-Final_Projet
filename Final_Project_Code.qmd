@@ -192,7 +192,11 @@ kfold_cv <- function(data, k = 16, seed = 23) {
 }
 
 k_fold <- kfold_cv(grouped_data)
-k_fold
+k_fold %>% 
+  kable(col.names = c("Fold", "R-Squared Value"), align = 'c', digits = 4) %>% 
+  kableExtra::kable_classic() %>%
+  row_spec(0, bold = TRUE) %>%
+  add_header_above(bold = TRUE, c("R-Squared Value for each Fold" = 2))
 
 ```
 

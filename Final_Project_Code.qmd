@@ -1,3 +1,4 @@
+---
 title: "Final_Project_Code"
 date: now
 author: "Elliot Kunz, Andrea Pareja, Anson Wu, Caroline Ritchey"

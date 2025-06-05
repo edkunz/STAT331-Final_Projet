@@ -146,6 +146,8 @@ Present the estimated regression model (in notation).
 
 Predicted Happiness Score = 31.59 + 8.73\*log(Daily_Income)
 
+${\hat{HappinessScore}} = 31.59 + 8.73*log(DailyIncome)$
+
 Interpret the linear regression coefficients (in context).
 
 We predict that a country with a log of their mean daily income equal to 0 will have a mean happiness score of 31.59 over the years 2005 to 2023.

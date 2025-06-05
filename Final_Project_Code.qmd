@@ -213,7 +213,7 @@ ggplot(data = k_fold)+
 
 Present and discuss the implications of the results of cross validation for the quality of your model
 
-Discuss the implications of the values shown in this plot. How predictive is your model? How much does the performance vary between folds? Is there any evidence of overfitting?
+Discuss the implications of the values shown in this plot. How predictive is your model? How much does the performance vary between folds? Is there any evidence of over fitting?
 
 ## Conclusion
 

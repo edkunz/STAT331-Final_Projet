@@ -35,7 +35,9 @@ In this analysis, we use data collected by Gallup World Poll on November 20, 202
 We believe that as daily income increases, so does the happiness score (WHR). Typically higher incomes means more financial freedom, this lowers the stress that is built up from worrying about financial problems like cost of living. In the article, “Does more money correlate with greater happiness?” by Michele W. Berger, Matthew Killingsworth argues that “for most people larger incomes are associated with greater happiness” (Berger 2023).
 
 ## Data Cleaning
+
 We transformed both data sets to long format so that they could be joined by year and country. We also removed missing values.
+
 ```{r}
 data1 <- read_csv("hapiscore_whr.csv", show_col_types = F)
 data2 <- read_csv("mincpcap_cppp.csv", show_col_types = F)
@@ -65,8 +67,8 @@ kable(sample_n(data, size = 10), col.names = c("Country", "Year", "Happiness"," 
 
 ## Modeling the Relationship between Happiness and Daily Income
 
-
 #Displaying the Relationship
+
 ```{r}
 grouped_data <- data %>% 
   group_by(country) %>% 
@@ -84,6 +86,7 @@ ggplot(data = grouped_data, mapping = aes(x = log(daily_income), y = happiness))
 ```
 
 #Trends Over Time
+
 ```{r}
 animated_plot <- ggplot(data = data, mapping = aes(x = log(daily_income), y = happiness)) +
   geom_point() +
@@ -112,7 +115,6 @@ animate(animated_plot,
 
 ![](happiness_animation.gif)
 
-
 We used the mean score of the Happiness score and Daily Income for each country. The relationship of the variables followed a logarithmic distribution which we then transformed to get a linear relationship by using the logarithmic function on mean of Daily Income over the years 2005 to 2023. We then get a nicely formatted linear relationship between the log of the mean Daily Income and mean Happiness Score.
 
 Based on the animated plot the line over time stays relativly the same with some years having a stronger relationship than other years. We still see a positive relationship in all years between the log of the mean daily income and happiness score which indicates that the log of the mean daily income could be a strong predictor of the happiness score of a country.
@@ -134,9 +136,7 @@ tidy(model$coefficients) %>%
   add_header_above(bold = TRUE, c("Table of Coefficients for Fitted Model" = 2))
 ```
 
-
 ${\hat{HappinessScore}} = 31.59 + 8.73*log(DailyIncome)$
-
 
 We predict that a country with a log of their mean daily income equal to 0 will have a mean happiness score of 31.59 over the years 2005 to 2023.
 
@@ -197,7 +197,6 @@ k_fold <- kfold_cv(grouped_data)
 k_fold
 
 ```
-
 
 ### 3.2 Plotting the results
 

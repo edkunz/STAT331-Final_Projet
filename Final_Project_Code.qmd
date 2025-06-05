@@ -42,20 +42,15 @@ We transformed both data sets to long format so that they could be joined by yea
 data1 <- read_csv("hapiscore_whr.csv", show_col_types = F)
 data2 <- read_csv("mincpcap_cppp.csv", show_col_types = F)
 
-
-
 clean_data1 <- data1 %>% 
   pivot_longer(cols = `2005`:`2023`,
               names_to = "year",
               values_to = "happiness")
-  
-
 
 clean_data2 <- data2 %>% 
   pivot_longer(cols = `1800`:`2100`,
               names_to = 'year',
               values_to = "daily_income")
-  
   
 data <- clean_data1 %>% 
   inner_join(clean_data2, 
@@ -67,7 +62,7 @@ kable(sample_n(data, size = 10), col.names = c("Country", "Year", "Happiness"," 
 
 ## Modeling the Relationship between Happiness and Daily Income
 
-#Displaying the Relationship
+### Displaying the Relationship
 
 ```{r}
 grouped_data <- data %>% 
@@ -85,7 +80,7 @@ ggplot(data = grouped_data, mapping = aes(x = log(daily_income), y = happiness))
 
 ```
 
-#Trends Over Time
+### Trends Over Time
 
 ```{r}
 animated_plot <- ggplot(data = data, mapping = aes(x = log(daily_income), y = happiness)) +
@@ -164,7 +159,7 @@ data.frame(
 
 The total variance in Happiness Score is 133.57. 82.10 of this is accounted for by the regression model based on the log of the mean daily income. The other 31.48 is unexplained. The R squared value of 0.7228 means that 72.28% of the variability in happiness can be explained by the log of daily income. The value comes from dividing the variance in Happiness Score explained by the model by the total variance in Happiness Score. This is a rather high percent and suggests that this is a well fit model that is able to identify the main trend in this data.
 
-#Discussion of Quality of the Model
+#### Discussion of Quality of the Model
 
 The proportion of variability for Happiness Score explained by the log of daily income is .7228, which means that 72.28% of the variability in Happiness Score can be explained by the log of daily income. This suggests that the quality of our model is good.
 

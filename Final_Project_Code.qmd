@@ -80,6 +80,8 @@ ggplot(data = grouped_data, mapping = aes(x = log(daily_income), y = happiness))
 
 ```
 
+This scatter plot shows the mean happiness score compared to daily income. Each dot on the plot represents the mean happiness per log of daily income. Here we can see that the trend of happiness increasing as daily income also increases. 
+
 ### Trends Over Time
 
 ```{r}

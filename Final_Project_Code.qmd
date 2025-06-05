@@ -216,6 +216,8 @@ Discuss the implications of the values shown in this plot. How predictive is you
 
 ## Conclusion
 
+Throughout our analysis, we were curious about answering the central question proposed by Michele W. Berger: "Does more money correlate with greater happiness?" We have focused on the relationship between daily income and happiness, leading us to discover that there is indeed a positive relationship between the two.
+
 ## Works Cited
 
 Berger, Michele W. “Does More Money Correlate with Greater Happiness?” Penn Today, University of Pennsylvania, 6 Mar. 2023, penntoday.upenn.edu/news/does-more-money-correlate-greater-happiness-Penn-Princeton-research.

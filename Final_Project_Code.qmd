@@ -136,9 +136,7 @@ tidy(model$coefficients) %>%
 
 ${\hat{HappinessScore}} = 31.59 + 8.73*log(DailyIncome)$
 
-We predict that a country with a log of their mean daily income equal to 0 will have a mean happiness score of 31.59 over the years 2005 to 2023.
-
-If we multiply the mean Daily Income by e, we predict a increase of 8.73 in the mean Happiness Score.
+From this model we predict that a country with a log of their mean daily income equal to 0 will have a mean happiness score of 31.59 over the years 2005 to 2023. If we multiply the mean Daily Income by e (approximatly 2.718), we predict a increase of 8.73 in the mean Happiness Score for the country. This is a significant increase in the Happiness score since the value is a score between 1 and 100. Thus, we predict that whenever Daily Income increases we should see an increase in the Happiness score for a country. 
 
 ### Model Fit
 

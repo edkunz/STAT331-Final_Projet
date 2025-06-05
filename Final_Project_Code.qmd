@@ -57,12 +57,15 @@ data <- clean_data1 %>%
              by = join_by(country == country, year == year)) %>% 
   na.omit()
 
-kable(sample_n(data, size = 10), col.names = c("Country", "Year", "Happiness"," Daily Income"), align = "c", digits = 2)
+kable(sample_n(data, size = 10), col.names = c("Country", "Year", "Happiness"," Daily Income"), align = "c", digits = 2) %>% 
+    kableExtra::kable_classic() %>%
+  row_spec(0, bold = TRUE) %>%
+  add_header_above(bold = TRUE, c("Sample of Data giving Happiness Score and Daily Income for each Country and Year between 2005 to 2023" = 4))
 ```
 
 ## Modeling the Relationship between Happiness and Daily Income
 
-### Displaying the Relationship
+We used the mean score of the Happiness score and the Daily Income for each country. The relationship of the variables followed a logarithmic distribution which we then transformed to get a linear relationship by using the logarithmic function on mean of Daily Income over the years 2005 to 2023. We then get a nicely formatted linear relationship between the log of the mean Daily Income and mean Happiness Score, as shown below. 
 
 ```{r}
 grouped_data <- data %>% 
@@ -80,9 +83,8 @@ ggplot(data = grouped_data, mapping = aes(x = log(daily_income), y = happiness))
 
 ```
 
-This scatter plot shows the mean happiness score compared to daily income. Each dot on the plot represents the mean happiness per log of daily income. Here we can see that the trend of happiness increasing as daily income also increases. 
+We then choose to look at the linear relationship for each of the years and plot them to see how the relationship changed over time. We still used the model of mean Happiness score determined by the mean Daily income for each country but this time we see the relationship over the years. 
 
-### Trends Over Time
 
 ```{r}
 animated_plot <- ggplot(data = data, mapping = aes(x = log(daily_income), y = happiness)) +
@@ -111,8 +113,6 @@ animate(animated_plot,
 ```
 
 ![](happiness_animation.gif)
-
-We used the mean score of the Happiness score and Daily Income for each country. The relationship of the variables followed a logarithmic distribution which we then transformed to get a linear relationship by using the logarithmic function on mean of Daily Income over the years 2005 to 2023. We then get a nicely formatted linear relationship between the log of the mean Daily Income and mean Happiness Score.
 
 Based on the animated plot the line over time stays relativly the same with some years having a stronger relationship than other years. We still see a positive relationship in all years between the log of the mean daily income and happiness score which indicates that the log of the mean daily income could be a strong predictor of the happiness score of a country.
 
@@ -167,7 +167,7 @@ The proportion of variability for Happiness Score explained by the log of daily 
 
 ## Cross-Validation
 
-### 3.1 Implementing k-fold cross validation
+We used cross validation to determine the mean R Squared for our model. R squared is a measure of the amount of varainace in Happiness that is explained by Dialy Income, thus a good overall predictor of the overall performance of the model. We did cross validation to determine the mean R squared because the R squared for a random sample can be very varied thus taking the mean of this value gives the best metric for overall performance. 
 
 ```{r}
 
@@ -192,10 +192,9 @@ kfold_cv <- function(data, k = 16, seed = 23) {
 
 k_fold <- kfold_cv(grouped_data)
 k_fold
-
 ```
 
-### 3.2 Plotting the results
+The mean of our R sqaured's from cross vaslidation was 0.5629. This means that 56.29% of the vairation in Happiness score is explained by Daily Income in out model. Below is a grpah plotting the R Squared values with their respective folds
 
 ```{r}
 ggplot(data = k_fold)+
@@ -213,7 +212,7 @@ Discuss the implications of the values shown in this plot. How predictive is you
 
 ## Conclusion
 
-Throughout our analysis, we were curious about answering the central question proposed by Michele W. Berger: "Does more money correlate with greater happiness?" We have focused on the relationship between daily income and happiness, leading us to discover that there is indeed a positive relationship between the two. The dataset we used were prepared by omitting any countries and years that had missing values. Our linear regression model showed that there is extremely strong evidence of a positive relationship happiness scores and daily income throughout the years for over 150 countries. The model shows that this relationship explains for 72.28% of the variation in Happiness Score. For confirmation of this relationship, we conducted a 16-fold cross validation which showed that there was a consistent relationship, strengthening our findings.
+Throughout our analysis, we were curious about answering the central question proposed by Michele W. Berger: "Does more money correlate with greater happiness?" We have focused on the relationship between daily income and happiness, leading us to discover that there is indeed a positive relationship between the two. The dataset we used were prepared by omitting any countries and years that had missing values. Our linear regression model showed that there is strong evidence of a positive relationship happiness scores and daily income throughout the years 2005 to 2023 for over 150 countries. The model shows that this relationship explains for 56.29% of the variation in Happiness Score. For confirmation of this relationship, we conducted a 16-fold cross validation which showed that there was a consistent relationship, strengthening our findings.
 
 The analysis of the positive relationship between daily income and happiness scores in various countries corroborates theories about the way money can help alleviate stressors caused by lack of finances. The increase of money can be used to access housing, better healthcare, more fulfilling experiences, and much more. Although we found that higher daily incomes are associated with higher happiness scores, happiness can be influenced by other things that are not gathered by daily income like personal values and religion.
 

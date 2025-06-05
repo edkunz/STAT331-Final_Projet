@@ -24,7 +24,6 @@ library(broom)
 library(gganimate)
 ```
 
-
 ## Introduction
 
 ### Data Descriptions
@@ -34,8 +33,6 @@ In this analysis, we use data collected by Gallup World Poll on November 20, 202
 ### Hypothesis
 
 We believe that as daily income increases, so does the happiness score (WHR). Typically higher incomes means more financial freedom, this lowers the stress that is built up from worrying about financial problems like cost of living. In the article, “Does more money correlate with greater happiness?” by Michele W. Berger, Matthew Killingsworth argues that “for most people larger incomes are associated with greater happiness” (Berger 2023).
-
-
 
 ## Data Cleaning
 
@@ -241,10 +238,7 @@ Present and discuss the implications of the results of cross validation for the 
 
 Discuss the implications of the values shown in this plot. How predictive is your model? How much does the performance vary between folds? Is there any evidence of overfitting?
 
-
 ## Conclusion
-
-
 
 ## Works Cited
 

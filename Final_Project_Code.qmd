@@ -216,7 +216,11 @@ Discuss the implications of the values shown in this plot. How predictive is you
 
 ## Conclusion
 
-Throughout our analysis, we were curious about answering the central question proposed by Michele W. Berger: "Does more money correlate with greater happiness?" We have focused on the relationship between daily income and happiness, leading us to discover that there is indeed a positive relationship between the two.
+Throughout our analysis, we were curious about answering the central question proposed by Michele W. Berger: "Does more money correlate with greater happiness?" We have focused on the relationship between daily income and happiness, leading us to discover that there is indeed a positive relationship between the two. The dataset we used were prepared by omitting any countries and years that had missing values. Our linear regression model showed that there is extremely strong evidence of a positive relationship happiness scores and daily income throughout the years for over 150 countries. The model shows that this relationship explains for 72.28% of the variation in Happiness Score. For confirmation of this relationship, we conducted a 16-fold cross validation which showed that there was a consistent relationship, strengthening our findings.
+
+The analysis of the positive relationship between daily income and happiness scores in various countries corroborates theories about the way money can help alleviate stressors caused by lack of finances. The increase of money can be used to access housing, better healthcare, more fulfilling experiences, and much more. Although we found that higher daily incomes are associated with higher happiness scores, happiness can be influenced by other things that are not gathered by daily income like personal values and religion.
+
+Our model does have limitations. We can see that there is a positive relationship between daily income and happiness scores. However, it is important to acknowledge that there can be a point where money can have diminishing returns in terms of happiness. Infinite money would not necessarily mean infinite happiness. So, although money cannot buy happiness, money seems to be a basis where it can expand the opportunities to increase happiness.
 
 ## Works Cited
 

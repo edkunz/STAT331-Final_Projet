@@ -24,39 +24,33 @@ library(broom)
 library(gganimate)
 ```
 
-
 ## Introduction
 
 ### Data Descriptions
 
-In this analysis, we use data collected by Gallup World Poll on November 20, 2024 which contains the national average response to the question of life evaluations. We additionally include information from a dataset provided by Gapminder on the mean daily household per capita income. Our analysis includes the years 2005 - 2023. We omitted any countrys and years who had missing values for either the happiness score or their mean daily household per capita income.
+In this analysis, we use data collected by Gallup World Poll on November 20, 2024 which contains the national average response to the question of life evaluations. We additionally include information from a data set provided by Gapminder on the mean daily household per capital income. Our analysis includes the years 2005 - 2023. We omitted any countries and years who had missing values for either the happiness score or their mean daily household per capital income.
 
 ### Hypothesis
 
 We believe that as daily income increases, so does the happiness score (WHR). Typically higher incomes means more financial freedom, this lowers the stress that is built up from worrying about financial problems like cost of living. In the article, “Does more money correlate with greater happiness?” by Michele W. Berger, Matthew Killingsworth argues that “for most people larger incomes are associated with greater happiness” (Berger 2023).
 
-
-
 ## Data Cleaning
+
+We transformed both data sets to long format so that they could be joined by year and country. We also removed missing values.
 
 ```{r}
 data1 <- read_csv("hapiscore_whr.csv", show_col_types = F)
 data2 <- read_csv("mincpcap_cppp.csv", show_col_types = F)
 
-
-
 clean_data1 <- data1 %>% 
   pivot_longer(cols = `2005`:`2023`,
               names_to = "year",
               values_to = "happiness")
-  
-
 
 clean_data2 <- data2 %>% 
   pivot_longer(cols = `1800`:`2100`,
               names_to = 'year',
               values_to = "daily_income")
-  
   
 data <- clean_data1 %>% 
   inner_join(clean_data2, 
@@ -68,9 +62,7 @@ kable(sample_n(data, size = 10), col.names = c("Country", "Year", "Happiness"," 
 
 ## Modeling the Relationship between Happiness and Daily Income
 
-### Data Visualization
-
-Create two visualizations exploring the following: The relationship between the two quantitative variables you are investigating.
+### Displaying the Relationship
 
 ```{r}
 grouped_data <- data %>% 
@@ -88,7 +80,7 @@ ggplot(data = grouped_data, mapping = aes(x = log(daily_income), y = happiness))
 
 ```
 
-How this relationship (from #1) has changed over time using an animated plot.
+### Trends Over Time
 
 ```{r}
 animated_plot <- ggplot(data = data, mapping = aes(x = log(daily_income), y = happiness)) +
@@ -118,21 +110,15 @@ animate(animated_plot,
 
 ![](happiness_animation.gif)
 
-Present and discuss visualizations of the relationship between the variables.
-
-We used the mean score of the Happiness score and Daily Income for each country. The relationship of the varaibles followed a logarithmic distribution which we then transformed to get a linear relationship by using the logrithmic function on mean of Daily Income over the years 2005 to 2023. We then get a nicely formated linear relationship between the log of the mean Daily Income and mean Happiness Score.
+We used the mean score of the Happiness score and Daily Income for each country. The relationship of the variables followed a logarithmic distribution which we then transformed to get a linear relationship by using the logarithmic function on mean of Daily Income over the years 2005 to 2023. We then get a nicely formatted linear relationship between the log of the mean Daily Income and mean Happiness Score.
 
 Based on the animated plot the line over time stays relativly the same with some years having a stronger relationship than other years. We still see a positive relationship in all years between the log of the mean daily income and happiness score which indicates that the log of the mean daily income could be a strong predictor of the happiness score of a country.
 
 ### Linear Regression
 
-Fit a simple linear regression model for the relationship between the variables you selected.
-
 ```{r}
 model <- lm(happiness ~ log(daily_income), data = grouped_data)
 ```
-
-Describe the statistical method used – linear regression.
 
 We made a model to predict the mean Happiness Score based on the log of the mean Daily Income for each country, using the years 2005 to 2023.
 
@@ -145,25 +131,13 @@ tidy(model$coefficients) %>%
   add_header_above(bold = TRUE, c("Table of Coefficients for Fitted Model" = 2))
 ```
 
-Present the estimated regression model (in notation).
-
-Predicted Happiness Score = 31.59 + 8.73\*log(Daily_Income)
-
-Interpret the linear regression coefficients (in context).
+${\hat{HappinessScore}} = 31.59 + 8.73*log(DailyIncome)$
 
 We predict that a country with a log of their mean daily income equal to 0 will have a mean happiness score of 31.59 over the years 2005 to 2023.
 
 If we multiply the mean Daily Income by e, we predict a increase of 8.73 in the mean Happiness Score.
 
 ### Model Fit
-
-The goal of regression is to account for as much variability in the response values as we can. To assess how “good” of a regression model you have, look at how much of the variability in the response was accounted for by your regression.
-
-The variance in your fitted values represents the amount of variability in the response that was accounted for by the explanatory variable. The variance in the residuals represents the amount of variability in the responses that was not accounted for.
-
-Make a nicely formatted table that presents the following:
-
-The variance in the response values. (A) The variance in the fitted values from your regression model. (B) The variance in the residuals from your regression model. The model R2 (B / A)
 
 ```{r}
 aug_data <- model %>%
@@ -183,17 +157,15 @@ data.frame(
 # https://broom.tidymodels.org/reference/augment.lm.html
 ```
 
-Describe the fit of the regression model (both in table and written format).
+The total variance in Happiness Score is 133.57. 82.10 of this is accounted for by the regression model based on the log of the mean daily income. The other 31.48 is unexplained. The R squared value of 0.7228 means that 72.28% of the variability in happiness can be explained by the log of daily income. The value comes from dividing the variance in Happiness Score explained by the model by the total variance in Happiness Score. This is a rather high percent and suggests that this is a well fit model that is able to identify the main trend in this data.
 
-The total variance in Happiness Score is 133.57. 82.10 of this is accounted for by the regression model based on the log of the mean daily income. The other 31.48 is unexplained. The R squared value of 0.7228 means that 72.28% of the variability in happiness can be explained by the log of daily income. The value comes from dividing the variance in Happinesss Score explained by the model by the toal variance in Happiness Score. This is a rather high percent and suggests that this is a well fit model that is able to identify the main trend in this data.
-
-Discuss the proportion of the variability in the response values that was accounted for by your regression model. What does this suggest about the “quality” of your model?
+#### Discussion of Quality of the Model
 
 The proportion of variability for Happiness Score explained by the log of daily income is .7228, which means that 72.28% of the variability in Happiness Score can be explained by the log of daily income. This suggests that the quality of our model is good.
 
 ## Cross-Validation
 
-### 3.1 Implement k-fold cross validation
+### 3.1 Implementing k-fold cross validation
 
 ```{r}
 
@@ -221,11 +193,7 @@ k_fold
 
 ```
 
-Explain the process of cross validation
-
-### 3.2 Plot the results
-
-Plot the distribution of the R2 values from your cross validation (there should be one value from each fold). Include in your plot an indication of the average R2 value across all folds.
+### 3.2 Plotting the results
 
 ```{r}
 ggplot(data = k_fold)+
@@ -239,12 +207,15 @@ ggplot(data = k_fold)+
 
 Present and discuss the implications of the results of cross validation for the quality of your model
 
-Discuss the implications of the values shown in this plot. How predictive is your model? How much does the performance vary between folds? Is there any evidence of overfitting?
-
+Discuss the implications of the values shown in this plot. How predictive is your model? How much does the performance vary between folds? Is there any evidence of over fitting?
 
 ## Conclusion
 
+Throughout our analysis, we were curious about answering the central question proposed by Michele W. Berger: "Does more money correlate with greater happiness?" We have focused on the relationship between daily income and happiness, leading us to discover that there is indeed a positive relationship between the two. The dataset we used were prepared by omitting any countries and years that had missing values. Our linear regression model showed that there is extremely strong evidence of a positive relationship happiness scores and daily income throughout the years for over 150 countries. The model shows that this relationship explains for 72.28% of the variation in Happiness Score. For confirmation of this relationship, we conducted a 16-fold cross validation which showed that there was a consistent relationship, strengthening our findings.
 
+The analysis of the positive relationship between daily income and happiness scores in various countries corroborates theories about the way money can help alleviate stressors caused by lack of finances. The increase of money can be used to access housing, better healthcare, more fulfilling experiences, and much more. Although we found that higher daily incomes are associated with higher happiness scores, happiness can be influenced by other things that are not gathered by daily income like personal values and religion.
+
+Our model does have limitations. We can see that there is a positive relationship between daily income and happiness scores. However, it is important to acknowledge that there can be a point where money can have diminishing returns in terms of happiness. Infinite money would not necessarily mean infinite happiness. So, although money cannot buy happiness, money seems to be a basis where it can expand the opportunities to increase happiness.
 
 ## Works Cited
 

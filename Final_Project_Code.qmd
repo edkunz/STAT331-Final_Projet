@@ -207,13 +207,11 @@ ggplot(data = k_fold)+
        caption = "Average R-squared value is shown by Blue Line")
 ```
 
-Present and discuss the implications of the results of cross validation for the quality of your model
-
-Discuss the implications of the values shown in this plot. How predictive is your model? How much does the performance vary between folds? Is there any evidence of over fitting?
+The Average R-squared values, shown by the blue line, falls just below 0.6. This means that less than 60% of the variability in the outcome can be explained by the model. Slightly more than 40% of the variance it still unexplained, which makes the predictive power of this model moderate. There is also a good amount of variability between folds which means that some of them have better predictions than others. 
 
 ## Conclusion
 
-Throughout our analysis, we were curious about answering the central question proposed by Michele W. Berger: "Does more money correlate with greater happiness?" We have focused on the relationship between daily income and happiness, leading us to discover that there is indeed a positive relationship between the two. The dataset we used were prepared by omitting any countries and years that had missing values. Our linear regression model showed that there is extremely strong evidence of a positive relationship happiness scores and daily income throughout the years for over 150 countries. The model shows that this relationship explains for 72.28% of the variation in Happiness Score. For confirmation of this relationship, we conducted a 16-fold cross validation which showed that there was a consistent relationship, strengthening our findings.
+Throughout our analysis, we were curious about answering the central question proposed by Michele W. Berger: "Does more money correlate with greater happiness?" We have focused on the relationship between daily income and happiness, leading us to discover that there is indeed a positive relationship between the two. The data set we used were prepared by omitting any countries and years that had missing values. Our linear regression model showed that there is extremely strong evidence of a positive relationship happiness scores and daily income throughout the years for over 150 countries. The model shows that this relationship explains for 72.28% of the variation in Happiness Score. For confirmation of this relationship, we conducted a 16-fold cross validation which showed that there was a consistent relationship, strengthening our findings.
 
 The analysis of the positive relationship between daily income and happiness scores in various countries corroborates theories about the way money can help alleviate stressors caused by lack of finances. The increase of money can be used to access housing, better healthcare, more fulfilling experiences, and much more. Although we found that higher daily incomes are associated with higher happiness scores, happiness can be influenced by other things that are not gathered by daily income like personal values and religion.
 

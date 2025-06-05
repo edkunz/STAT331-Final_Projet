@@ -167,7 +167,7 @@ The proportion of variability for Happiness Score explained by the log of daily 
 
 ## Cross-Validation
 
-### 3.1 Implementing k-fold cross validation
+### Implementing k-fold cross validation
 
 ```{r}
 
@@ -195,7 +195,7 @@ k_fold
 
 ```
 
-### 3.2 Plotting the results
+### Plotting the results
 
 ```{r}
 ggplot(data = k_fold)+

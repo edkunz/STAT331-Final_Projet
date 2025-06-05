@@ -169,6 +169,7 @@ The proportion of variability for Happiness Score explained by the log of daily 
 
 We used cross validation to determine the mean R Squared for our model. R squared is a measure of the amount of varainace in Happiness that is explained by Dialy Income, thus a good overall predictor of the overall performance of the model. We did cross validation to determine the mean R squared because the R squared for a random sample can be very varied thus taking the mean of this value gives the best metric for overall performance. 
 
+
 ```{r}
 
 process_folds <- function(index) {
@@ -200,6 +201,7 @@ k_fold %>%
 ```
 
 The mean of our R sqaured's from cross vaslidation was 0.5629. This means that 56.29% of the vairation in Happiness score is explained by Daily Income in out model. Below is a grpah plotting the R Squared values with their respective folds
+
 
 ```{r}
 ggplot(data = k_fold)+

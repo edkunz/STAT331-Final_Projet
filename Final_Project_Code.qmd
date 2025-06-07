@@ -224,3 +224,5 @@ Berger, Michele W. “Does More Money Correlate with Greater Happiness?” Penn 
 Helliwell, John F., et al. "World Happiness Report 2024." The World Happiness Report, 20 Mar. 2024, [worldhappiness.report/ed/2024/](http://worldhappiness.report/ed/2024/).
 
 "Poverty and Inequality Platform." Poverty and Inequality Platform, 2022, [pip.worldbank.org/#](http://pip.worldbank.org/#).
+
+GitHub Repository: https://github.com/edkunz/STAT331-Final_Projet

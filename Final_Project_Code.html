@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Elliot Kunz, Andrea Pareja, Anson Wu, Caroline Ritchey">
-<meta name="dcterms.date" content="2025-06-05">
+<meta name="dcterms.date" content="2025-06-06">
 
 <title>Final_Project_Code</title>
 <style>
@@ -3484,7 +3484,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">June 5, 2025</p>
+      <p class="date">June 6, 2025</p>
     </div>
   </div>
   
@@ -3513,7 +3513,7 @@ window.Quarto = {
 </section>
 <section id="data-cleaning" class="level2">
 <h2 class="anchored" data-anchor-id="data-cleaning">Data Cleaning</h2>
-<p>We transformed both files so they could be joined by year and country which would give us a final data set that contains the Happiness Score and Daily Income for each country and year combination. We also removed any missing values from the data so that the data points were not skewed. The Happiness Score data only had information on the years 2005 to 2023 while the data on Daily Income had information from 1800 to 2100 for each country. The values for daily income past 2024 are all predictions based on the countries daily income. Thus we decided to just use the years between 2005 and 2023 which had actaul information, not predicted, for both daily income and happiness score. Below shows a sample of the data we used moving forward.</p>
+<p>We transformed both files so they could be joined by year and country which would give us a final data set that contains the Happiness Score and Daily Income for each country and year combination. We also removed any missing values from the data so that the data points were not skewed. The Happiness Score data only had information on the years 2005 to 2023 while the data on Daily Income had information from 1800 to 2100 for each country. The values for daily income past 2024 are all predictions based on the countries daily income. Thus we decided to just use the years between 2005 and 2023 which had actual information, not predicted, for both daily income and happiness score. Below shows a sample of the data we used moving forward.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
@@ -3549,64 +3549,64 @@ window.Quarto = {
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: center;">Tanzania</td>
-<td style="text-align: center;">2018</td>
-<td style="text-align: center;">34.5</td>
-<td style="text-align: center;">3.29</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">Tanzania</td>
-<td style="text-align: center;">2016</td>
-<td style="text-align: center;">29.0</td>
-<td style="text-align: center;">3.24</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">Germany</td>
-<td style="text-align: center;">2021</td>
-<td style="text-align: center;">67.5</td>
-<td style="text-align: center;">65.00</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">Vietnam</td>
-<td style="text-align: center;">2021</td>
-<td style="text-align: center;">55.4</td>
-<td style="text-align: center;">15.30</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">Gambia</td>
-<td style="text-align: center;">2018</td>
-<td style="text-align: center;">49.2</td>
-<td style="text-align: center;">5.09</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">Cameroon</td>
-<td style="text-align: center;">2015</td>
-<td style="text-align: center;">50.4</td>
-<td style="text-align: center;">5.89</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">USA</td>
-<td style="text-align: center;">2013</td>
-<td style="text-align: center;">72.5</td>
-<td style="text-align: center;">69.20</td>
-</tr>
-<tr class="even">
-<td style="text-align: center;">India</td>
-<td style="text-align: center;">2006</td>
-<td style="text-align: center;">53.5</td>
-<td style="text-align: center;">3.30</td>
-</tr>
-<tr class="odd">
-<td style="text-align: center;">Spain</td>
+<td style="text-align: center;">Poland</td>
 <td style="text-align: center;">2007</td>
-<td style="text-align: center;">70.0</td>
-<td style="text-align: center;">48.10</td>
+<td style="text-align: center;">58.9</td>
+<td style="text-align: center;">19.40</td>
 </tr>
 <tr class="even">
-<td style="text-align: center;">Ecuador</td>
-<td style="text-align: center;">2019</td>
-<td style="text-align: center;">58.1</td>
-<td style="text-align: center;">15.40</td>
+<td style="text-align: center;">Denmark</td>
+<td style="text-align: center;">2022</td>
+<td style="text-align: center;">75.5</td>
+<td style="text-align: center;">69.40</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Azerbaijan</td>
+<td style="text-align: center;">2018</td>
+<td style="text-align: center;">51.7</td>
+<td style="text-align: center;">18.90</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Philippines</td>
+<td style="text-align: center;">2017</td>
+<td style="text-align: center;">55.9</td>
+<td style="text-align: center;">7.97</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Senegal</td>
+<td style="text-align: center;">2011</td>
+<td style="text-align: center;">38.3</td>
+<td style="text-align: center;">3.36</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Libya</td>
+<td style="text-align: center;">2017</td>
+<td style="text-align: center;">56.5</td>
+<td style="text-align: center;">23.90</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">France</td>
+<td style="text-align: center;">2013</td>
+<td style="text-align: center;">66.7</td>
+<td style="text-align: center;">57.30</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">UK</td>
+<td style="text-align: center;">2007</td>
+<td style="text-align: center;">68.0</td>
+<td style="text-align: center;">53.00</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Bosnia and Herzegovina</td>
+<td style="text-align: center;">2011</td>
+<td style="text-align: center;">50.0</td>
+<td style="text-align: center;">21.20</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Togo</td>
+<td style="text-align: center;">2018</td>
+<td style="text-align: center;">40.2</td>
+<td style="text-align: center;">4.55</td>
 </tr>
 </tbody>
 </table>
@@ -3640,7 +3640,7 @@ window.Quarto = {
 </div>
 </div>
 </div>
-<p>As you can see in the data the when we trty to fit a linear line through the data it does not fit well. Thus we decided to transform the data which after testing, we decided to transform the mean Daily Income for each country using a natural logrithmic transformation. Below is the scatter plot and linear fit of this transformed data.</p>
+<p>As you can see in the data the when we try to fit a linear line through the data it does not fit well. Thus we decided to transform the data which after testing, we decided to transform the mean Daily Income for each country using a natural logarithmic transformation. Below is the scatter plot and linear fit of this transformed data.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
@@ -3743,8 +3743,9 @@ Table of Coefficients for Fitted Model
 
 </div>
 </div>
-<p>Based on the table above the regression equation is: <span class="math inline">\({\hat{HappinessScore}} = 31.59 + 8.73*log(DailyIncome)\)</span></p>
-<p>From this model we predict that a country with a log of their mean daily income equal to 0 will have a mean happiness score of 31.59 over the years 2005 to 2023. If we multiply the mean Daily Income by e (approximatly 2.718), we predict a increase of 8.73 in the mean Happiness Score for a country. This is a significant increase in the Happiness score since the value is a score between 1 and 100. Thus, we predict that whenever Daily Income increases we should see an increase in the Happiness score for a country. Below is a table showing the variance of our model which is helpful for analysis of the overall performance of our model.</p>
+<p>Based on the table above the regression equation is:</p>
+<p><span class="math inline">\({\hat{HappinessScore}} = 31.59 + 8.73*log(DailyIncome)\)</span></p>
+<p>From this model we predict that a country with a log of their mean daily income equal to 0 will have a mean happiness score of 31.59 over the years 2005 to 2023. If we multiply the mean Daily Income by e (approximately 2.718), we predict a increase of 8.73 in the mean Happiness Score for a country. This is a significant increase in the Happiness score since the value is a score between 1 and 100. Thus, we predict that whenever Daily Income increases we should see an increase in the Happiness score for a country. Below is a table showing the variance of our model which is helpful for analysis of the overall performance of our model.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
@@ -3805,7 +3806,7 @@ Model Variance Table
 </section>
 <section id="cross-validation" class="level2">
 <h2 class="anchored" data-anchor-id="cross-validation">Cross-Validation</h2>
-<p>However the R-Squared value above is not an accurate final statistic for the amount of variation in Happiness Score of a country that can be explained by their Daily Income. Thus we implimented cross fold validation using 16 fold which gave us an average of 10 countries per fold. We then trained a model one at a time without one these folds and compared the predicted values of the model with the actual values from the fold to test how accurate our original model was. The values shown in the table below show the R-Squared values from each model where the fold was predicted on.</p>
+<p>However the R-Squared value above is not an accurate final statistic for the amount of variation in Happiness Score of a country that can be explained by their Daily Income. Thus we implemented cross fold validation using 16 fold which gave us an average of 10 countries per fold. We then trained a model one at a time without one these folds and compared the predicted values of the model with the actual values from the fold to test how accurate our original model was. The values shown in the table below show the R-Squared values from each model where the fold was predicted on.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
@@ -3923,7 +3924,7 @@ R-Squared Value for each Fold
 
 </div>
 </div>
-<p>As you can see from the table there is a lot of variation in the R-Squared for each model. Some are very high like folds 3 and 14 while some are very low like fold 10. Thus this varaition in the values means that sometimees the model is very good at predicting the countries happiness score and sometimes the trained model can not accuratly determine the countries happiness score from the daily income.In the graph below you can see the distribution of R-Squared compared to mean value.</p>
+<p>As you can see from the table there is a lot of variation in the R-Squared for each model. Some are very high like folds 3 and 14 while some are very low like fold 10. Thus this variation in the values means that sometimes the model is very good at predicting the countries happiness score and sometimes the trained model can not accurately determine the countries happiness score from the daily income.In the graph below you can see the distribution of R-Squared compared to mean value.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
@@ -3943,11 +3944,11 @@ R-Squared Value for each Fold
 </div>
 </div>
 </div>
-<p>The average R-squared values, shown by the blue line, is 0.5629. This means that 56.29% of the variability in Happiness Score can be explained by Daily Income. This is a very differnt prediction than the full model earlier which was 72.28%. However the average R-Squared is a much better predictor thus Daily Income is even less of a predictor of Happiness Score than we previosuly expected. Also now there is slightly more than 40% of the variance it still unexplained compared to around 30% before.</p>
+<p>The average R-squared values, shown by the blue line, is 0.5629. This means that 56.29% of the variability in Happiness Score can be explained by Daily Income. This is a very different prediction than the full model earlier which was 72.28%. However the average R-Squared is a much better predictor thus Daily Income is even less of a predictor of Happiness Score than we previously expected. Also now there is slightly more than 40% of the variance it still unexplained compared to around 30% before.</p>
 </section>
 <section id="conclusion" class="level2">
 <h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
-<p>Throughout our analysis, we were curious about answering the central question proposed by Michele W. Berger: “Does more money correlate with greater happiness?” We have focused on the relationship between daily income and happiness, leading us to discover that there is indeed a positive relationship between the two. The data set we used were prepared by omitting any countries and years that had missing values. Our linear regression model showed that there is extremely strong evidence of a positive relationship happiness scores and daily income throughout the years for over 150 countries. The model shows that this relationship explains for 72.28% of the variation in Happiness Score. For confirmation of this relationship, we conducted a 16-fold cross validation which showed that there was a consistent relationship, strengthening our findings.</p>
+<p>Throughout our analysis, we were curious about answering the central question proposed by Michele W. Berger: “Does more money correlate with greater happiness?” We have focused on the relationship between daily income and happiness, leading us to discover that there is indeed a positive relationship between the two. The data set we used were prepared by omitting any countries and years that had missing values. Our linear regression model showed that there is extremely strong evidence of a positive relationship happiness scores and daily income throughout the years for over 150 countries. The model shows that this relationship explains for 72.28% of the variation in Happiness Score. For confirmation of this relationship, we conducted a 16-fold cross validation which showed that there was actually a lower percent of variabilty accounted for, which slightly weakens the relationship.</p>
 <p>The analysis of the positive relationship between daily income and happiness scores in various countries corroborates theories about the way money can help alleviate stressors caused by lack of finances. The increase of money can be used to access housing, better healthcare, more fulfilling experiences, and much more. Although we found that higher daily incomes are associated with higher happiness scores, happiness can be influenced by other things that are not gathered by daily income like personal values and religion.</p>
 <p>Our model does have limitations. We can see that there is a positive relationship between daily income and happiness scores. However, it is important to acknowledge that there can be a point where money can have diminishing returns in terms of happiness. Infinite money would not necessarily mean infinite happiness. So, although money cannot buy happiness, money seems to be a basis where it can expand the opportunities to increase happiness.</p>
 </section>
@@ -4463,7 +4464,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a><span class="fu">## Data Cleaning</span></span>
 <span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-34"><a href="#cb13-34" aria-hidden="true" tabindex="-1"></a>We transformed both files so they could be joined by year and country which would give us a final data set that contains the Happiness Score and Daily Income for each country and year combination. We also removed any missing values from the data so that the data points were not skewed. The Happiness Score data only had information on the years 2005 to 2023 while the data on Daily Income had information from 1800 to 2100 for each country. The values for daily income past 2024 are all predictions based on the countries daily income. Thus we decided to just use the years between 2005 and 2023 which had actaul information, not predicted, for both daily income and happiness score. Below shows a sample of the data we used moving forward.</span>
+<span id="cb13-34"><a href="#cb13-34" aria-hidden="true" tabindex="-1"></a>We transformed both files so they could be joined by year and country which would give us a final data set that contains the Happiness Score and Daily Income for each country and year combination. We also removed any missing values from the data so that the data points were not skewed. The Happiness Score data only had information on the years 2005 to 2023 while the data on Daily Income had information from 1800 to 2100 for each country. The values for daily income past 2024 are all predictions based on the countries daily income. Thus we decided to just use the years between 2005 and 2023 which had actual information, not predicted, for both daily income and happiness score. Below shows a sample of the data we used moving forward.</span>
 <span id="cb13-35"><a href="#cb13-35" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-38"><a href="#cb13-38" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb13-39"><a href="#cb13-39" aria-hidden="true" tabindex="-1"></a>data1 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;hapiscore_whr.csv&quot;</span>, <span class="at">show_col_types =</span> F)</span>
@@ -4507,7 +4508,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb13-79"><a href="#cb13-79" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-80"><a href="#cb13-80" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb13-81"><a href="#cb13-81" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-82"><a href="#cb13-82" aria-hidden="true" tabindex="-1"></a>As you can see in the data the when we trty to fit a linear line through the data it does not fit well. Thus we decided to transform the data which after testing, we decided to transform the mean Daily Income for each country using a natural logrithmic transformation. Below is the scatter plot and linear fit of this transformed data.</span>
+<span id="cb13-82"><a href="#cb13-82" aria-hidden="true" tabindex="-1"></a>As you can see in the data the when we try to fit a linear line through the data it does not fit well. Thus we decided to transform the data which after testing, we decided to transform the mean Daily Income for each country using a natural logarithmic transformation. Below is the scatter plot and linear fit of this transformed data.</span>
 <span id="cb13-83"><a href="#cb13-83" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-86"><a href="#cb13-86" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb13-87"><a href="#cb13-87" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> grouped_data, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">log</span>(daily_income), <span class="at">y =</span> happiness))<span class="sc">+</span></span>
@@ -4568,91 +4569,93 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb13-148"><a href="#cb13-148" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_header_above</span>(<span class="at">bold =</span> <span class="cn">TRUE</span>, <span class="fu">c</span>(<span class="st">&quot;Table of Coefficients for Fitted Model&quot;</span> <span class="ot">=</span> <span class="dv">2</span>))</span>
 <span id="cb13-149"><a href="#cb13-149" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb13-150"><a href="#cb13-150" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-151"><a href="#cb13-151" aria-hidden="true" tabindex="-1"></a>Based on the table above the regression equation is: ${\hat{HappinessScore}} = 31.59 + 8.73*log(DailyIncome)$</span>
+<span id="cb13-151"><a href="#cb13-151" aria-hidden="true" tabindex="-1"></a>Based on the table above the regression equation is: </span>
 <span id="cb13-152"><a href="#cb13-152" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-153"><a href="#cb13-153" aria-hidden="true" tabindex="-1"></a>From this model we predict that a country with a log of their mean daily income equal to 0 will have a mean happiness score of 31.59 over the years 2005 to 2023. If we multiply the mean Daily Income by e (approximatly 2.718), we predict a increase of 8.73 in the mean Happiness Score for a country. This is a significant increase in the Happiness score since the value is a score between 1 and 100. Thus, we predict that whenever Daily Income increases we should see an increase in the Happiness score for a country. Below is a table showing the variance of our model which is helpful for analysis of the overall performance of our model.</span>
+<span id="cb13-153"><a href="#cb13-153" aria-hidden="true" tabindex="-1"></a>${\hat{HappinessScore}} = 31.59 + 8.73*log(DailyIncome)$</span>
 <span id="cb13-154"><a href="#cb13-154" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-157"><a href="#cb13-157" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb13-158"><a href="#cb13-158" aria-hidden="true" tabindex="-1"></a>aug_data <span class="ot">&lt;-</span> model <span class="sc">%&gt;%</span></span>
-<span id="cb13-159"><a href="#cb13-159" aria-hidden="true" tabindex="-1"></a>  <span class="fu">augment</span>()</span>
-<span id="cb13-160"><a href="#cb13-160" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-161"><a href="#cb13-161" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(</span>
-<span id="cb13-162"><a href="#cb13-162" aria-hidden="true" tabindex="-1"></a>  <span class="at">Var_Response_A =</span> <span class="fu">var</span>(aug_data<span class="sc">$</span>happiness),</span>
-<span id="cb13-163"><a href="#cb13-163" aria-hidden="true" tabindex="-1"></a>  <span class="at">Var_Fitted_B =</span> <span class="fu">var</span>(aug_data<span class="sc">$</span>.fitted),</span>
-<span id="cb13-164"><a href="#cb13-164" aria-hidden="true" tabindex="-1"></a>  <span class="at">Var_Residuals =</span> <span class="fu">var</span>(aug_data<span class="sc">$</span>.resid),</span>
-<span id="cb13-165"><a href="#cb13-165" aria-hidden="true" tabindex="-1"></a>  <span class="at">R_Squared =</span> <span class="fu">summary</span>(model)<span class="sc">$</span>r.squared</span>
-<span id="cb13-166"><a href="#cb13-166" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span> </span>
-<span id="cb13-167"><a href="#cb13-167" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="at">align =</span> <span class="st">&quot;c&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb13-168"><a href="#cb13-168" aria-hidden="true" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">kable_classic</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb13-169"><a href="#cb13-169" aria-hidden="true" tabindex="-1"></a>  <span class="fu">row_spec</span>(<span class="dv">0</span>, <span class="at">bold =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb13-170"><a href="#cb13-170" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_header_above</span>(<span class="at">bold =</span> <span class="cn">TRUE</span>, <span class="fu">c</span>(<span class="st">&quot;Model Variance Table&quot;</span> <span class="ot">=</span> <span class="dv">4</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb13-171"><a href="#cb13-171" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">full_width =</span> <span class="cn">TRUE</span>, <span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">&quot;striped&quot;</span>, <span class="st">&quot;bordered&quot;</span>))</span>
-<span id="cb13-172"><a href="#cb13-172" aria-hidden="true" tabindex="-1"></a><span class="co"># https://broom.tidymodels.org/reference/augment.lm.html</span></span>
-<span id="cb13-173"><a href="#cb13-173" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb13-174"><a href="#cb13-174" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-175"><a href="#cb13-175" aria-hidden="true" tabindex="-1"></a>The total variance in Happiness Score is 113.57. 82.10 of this is accounted for by the regression model based on the log of the mean daily income. The other 31.48 is unexplained. For this model, the R squared value of 0.7228 means that 72.28% of the variability in happiness can be explained by the log of daily income. The value comes from dividing the variance in Happiness Score explained by the model by the total variance in Happiness Score. This is a rather high percent and suggests that this is a well fit model that is able to identify the main trend in this data.</span>
+<span id="cb13-155"><a href="#cb13-155" aria-hidden="true" tabindex="-1"></a>From this model we predict that a country with a log of their mean daily income equal to 0 will have a mean happiness score of 31.59 over the years 2005 to 2023. If we multiply the mean Daily Income by e (approximately 2.718), we predict a increase of 8.73 in the mean Happiness Score for a country. This is a significant increase in the Happiness score since the value is a score between 1 and 100. Thus, we predict that whenever Daily Income increases we should see an increase in the Happiness score for a country. Below is a table showing the variance of our model which is helpful for analysis of the overall performance of our model.</span>
+<span id="cb13-156"><a href="#cb13-156" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-159"><a href="#cb13-159" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb13-160"><a href="#cb13-160" aria-hidden="true" tabindex="-1"></a>aug_data <span class="ot">&lt;-</span> model <span class="sc">%&gt;%</span></span>
+<span id="cb13-161"><a href="#cb13-161" aria-hidden="true" tabindex="-1"></a>  <span class="fu">augment</span>()</span>
+<span id="cb13-162"><a href="#cb13-162" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-163"><a href="#cb13-163" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(</span>
+<span id="cb13-164"><a href="#cb13-164" aria-hidden="true" tabindex="-1"></a>  <span class="at">Var_Response_A =</span> <span class="fu">var</span>(aug_data<span class="sc">$</span>happiness),</span>
+<span id="cb13-165"><a href="#cb13-165" aria-hidden="true" tabindex="-1"></a>  <span class="at">Var_Fitted_B =</span> <span class="fu">var</span>(aug_data<span class="sc">$</span>.fitted),</span>
+<span id="cb13-166"><a href="#cb13-166" aria-hidden="true" tabindex="-1"></a>  <span class="at">Var_Residuals =</span> <span class="fu">var</span>(aug_data<span class="sc">$</span>.resid),</span>
+<span id="cb13-167"><a href="#cb13-167" aria-hidden="true" tabindex="-1"></a>  <span class="at">R_Squared =</span> <span class="fu">summary</span>(model)<span class="sc">$</span>r.squared</span>
+<span id="cb13-168"><a href="#cb13-168" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span> </span>
+<span id="cb13-169"><a href="#cb13-169" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="at">align =</span> <span class="st">&quot;c&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb13-170"><a href="#cb13-170" aria-hidden="true" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">kable_classic</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb13-171"><a href="#cb13-171" aria-hidden="true" tabindex="-1"></a>  <span class="fu">row_spec</span>(<span class="dv">0</span>, <span class="at">bold =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb13-172"><a href="#cb13-172" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_header_above</span>(<span class="at">bold =</span> <span class="cn">TRUE</span>, <span class="fu">c</span>(<span class="st">&quot;Model Variance Table&quot;</span> <span class="ot">=</span> <span class="dv">4</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb13-173"><a href="#cb13-173" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">full_width =</span> <span class="cn">TRUE</span>, <span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">&quot;striped&quot;</span>, <span class="st">&quot;bordered&quot;</span>))</span>
+<span id="cb13-174"><a href="#cb13-174" aria-hidden="true" tabindex="-1"></a><span class="co"># https://broom.tidymodels.org/reference/augment.lm.html</span></span>
+<span id="cb13-175"><a href="#cb13-175" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb13-176"><a href="#cb13-176" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-177"><a href="#cb13-177" aria-hidden="true" tabindex="-1"></a><span class="fu">## Cross-Validation</span></span>
+<span id="cb13-177"><a href="#cb13-177" aria-hidden="true" tabindex="-1"></a>The total variance in Happiness Score is 113.57. 82.10 of this is accounted for by the regression model based on the log of the mean daily income. The other 31.48 is unexplained. For this model, the R squared value of 0.7228 means that 72.28% of the variability in happiness can be explained by the log of daily income. The value comes from dividing the variance in Happiness Score explained by the model by the total variance in Happiness Score. This is a rather high percent and suggests that this is a well fit model that is able to identify the main trend in this data.</span>
 <span id="cb13-178"><a href="#cb13-178" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-179"><a href="#cb13-179" aria-hidden="true" tabindex="-1"></a>However the R-Squared value above is not an accurate final statistic for the amount of variation in Happiness Score of a country that can be explained by their Daily Income. Thus we implimented cross fold validation using 16 fold which gave us an average of 10 countries per fold. We then trained a model one at a time without one these folds and compared the predicted values of the model with the actual values from the fold to test how accurate our original model was. The values shown in the table below show the R-Squared values from each model where the fold was predicted on.</span>
+<span id="cb13-179"><a href="#cb13-179" aria-hidden="true" tabindex="-1"></a><span class="fu">## Cross-Validation</span></span>
 <span id="cb13-180"><a href="#cb13-180" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-183"><a href="#cb13-183" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb13-184"><a href="#cb13-184" aria-hidden="true" tabindex="-1"></a>process_folds <span class="ot">&lt;-</span> <span class="cf">function</span>(index) {</span>
-<span id="cb13-185"><a href="#cb13-185" aria-hidden="true" tabindex="-1"></a>    train_data <span class="ot">&lt;-</span> data[<span class="sc">-</span>index, ]</span>
-<span id="cb13-186"><a href="#cb13-186" aria-hidden="true" tabindex="-1"></a>    val_data <span class="ot">&lt;-</span> data[index, ]</span>
-<span id="cb13-187"><a href="#cb13-187" aria-hidden="true" tabindex="-1"></a>    model <span class="ot">&lt;-</span> <span class="fu">lm</span>(happiness <span class="sc">~</span> daily_income, <span class="at">data =</span> train_data)</span>
-<span id="cb13-188"><a href="#cb13-188" aria-hidden="true" tabindex="-1"></a>    predict <span class="ot">&lt;-</span> <span class="fu">predict</span>(model, <span class="at">newdata =</span> val_data)</span>
-<span id="cb13-189"><a href="#cb13-189" aria-hidden="true" tabindex="-1"></a>    r2 <span class="ot">&lt;-</span> (<span class="fu">var</span>(predict) <span class="sc">/</span> <span class="fu">var</span>(val_data[[<span class="st">&quot;happiness&quot;</span>]]))</span>
-<span id="cb13-190"><a href="#cb13-190" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(r2)</span>
-<span id="cb13-191"><a href="#cb13-191" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb13-192"><a href="#cb13-192" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-193"><a href="#cb13-193" aria-hidden="true" tabindex="-1"></a>kfold_cv <span class="ot">&lt;-</span> <span class="cf">function</span>(data, <span class="at">k =</span> <span class="dv">16</span>, <span class="at">seed =</span> <span class="dv">23</span>) {</span>
-<span id="cb13-194"><a href="#cb13-194" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set.seed</span>(seed)</span>
-<span id="cb13-195"><a href="#cb13-195" aria-hidden="true" tabindex="-1"></a>  n <span class="ot">&lt;-</span> <span class="fu">nrow</span>(data)</span>
-<span id="cb13-196"><a href="#cb13-196" aria-hidden="true" tabindex="-1"></a>  fold_ids <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">rep_len</span>(<span class="dv">1</span><span class="sc">:</span>k, <span class="at">length.out =</span> n))</span>
-<span id="cb13-197"><a href="#cb13-197" aria-hidden="true" tabindex="-1"></a>  folds <span class="ot">&lt;-</span> <span class="fu">map</span>(<span class="dv">1</span><span class="sc">:</span>k, <span class="sc">~</span> <span class="fu">which</span>(fold_ids <span class="sc">==</span> .x))</span>
-<span id="cb13-198"><a href="#cb13-198" aria-hidden="true" tabindex="-1"></a>  r2_values <span class="ot">&lt;-</span> <span class="fu">map_dbl</span>(folds, process_folds)</span>
-<span id="cb13-199"><a href="#cb13-199" aria-hidden="true" tabindex="-1"></a>  results <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">fold =</span> <span class="dv">1</span><span class="sc">:</span>k, <span class="at">R2 =</span> r2_values)</span>
-<span id="cb13-200"><a href="#cb13-200" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(results)</span>
-<span id="cb13-201"><a href="#cb13-201" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb13-202"><a href="#cb13-202" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-203"><a href="#cb13-203" aria-hidden="true" tabindex="-1"></a>k_fold <span class="ot">&lt;-</span> <span class="fu">kfold_cv</span>(grouped_data)</span>
-<span id="cb13-204"><a href="#cb13-204" aria-hidden="true" tabindex="-1"></a>k_fold <span class="sc">%&gt;%</span> </span>
-<span id="cb13-205"><a href="#cb13-205" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">&quot;Fold&quot;</span>, <span class="st">&quot;R-Squared Value&quot;</span>), <span class="at">align =</span> <span class="st">&#39;c&#39;</span>, <span class="at">digits =</span> <span class="dv">4</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb13-206"><a href="#cb13-206" aria-hidden="true" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">kable_classic</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb13-207"><a href="#cb13-207" aria-hidden="true" tabindex="-1"></a>  <span class="fu">row_spec</span>(<span class="dv">0</span>, <span class="at">bold =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb13-208"><a href="#cb13-208" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_header_above</span>(<span class="at">bold =</span> <span class="cn">TRUE</span>, <span class="fu">c</span>(<span class="st">&quot;R-Squared Value for each Fold&quot;</span> <span class="ot">=</span> <span class="dv">2</span>))</span>
-<span id="cb13-209"><a href="#cb13-209" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb13-210"><a href="#cb13-210" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-211"><a href="#cb13-211" aria-hidden="true" tabindex="-1"></a>As you can see from the table there is a lot of variation in the R-Squared for each model. Some are very high like folds 3 and 14 while some are very low like fold 10. Thus this varaition in the values means that sometimees the model is very good at predicting the countries happiness score and sometimes the trained model can not accuratly determine the countries happiness score from the daily income.In the graph below you can see the distribution of R-Squared compared to mean value.</span>
+<span id="cb13-181"><a href="#cb13-181" aria-hidden="true" tabindex="-1"></a>However the R-Squared value above is not an accurate final statistic for the amount of variation in Happiness Score of a country that can be explained by their Daily Income. Thus we implemented cross fold validation using 16 fold which gave us an average of 10 countries per fold. We then trained a model one at a time without one these folds and compared the predicted values of the model with the actual values from the fold to test how accurate our original model was. The values shown in the table below show the R-Squared values from each model where the fold was predicted on.</span>
+<span id="cb13-182"><a href="#cb13-182" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-185"><a href="#cb13-185" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb13-186"><a href="#cb13-186" aria-hidden="true" tabindex="-1"></a>process_folds <span class="ot">&lt;-</span> <span class="cf">function</span>(index) {</span>
+<span id="cb13-187"><a href="#cb13-187" aria-hidden="true" tabindex="-1"></a>    train_data <span class="ot">&lt;-</span> data[<span class="sc">-</span>index, ]</span>
+<span id="cb13-188"><a href="#cb13-188" aria-hidden="true" tabindex="-1"></a>    val_data <span class="ot">&lt;-</span> data[index, ]</span>
+<span id="cb13-189"><a href="#cb13-189" aria-hidden="true" tabindex="-1"></a>    model <span class="ot">&lt;-</span> <span class="fu">lm</span>(happiness <span class="sc">~</span> daily_income, <span class="at">data =</span> train_data)</span>
+<span id="cb13-190"><a href="#cb13-190" aria-hidden="true" tabindex="-1"></a>    predict <span class="ot">&lt;-</span> <span class="fu">predict</span>(model, <span class="at">newdata =</span> val_data)</span>
+<span id="cb13-191"><a href="#cb13-191" aria-hidden="true" tabindex="-1"></a>    r2 <span class="ot">&lt;-</span> (<span class="fu">var</span>(predict) <span class="sc">/</span> <span class="fu">var</span>(val_data[[<span class="st">&quot;happiness&quot;</span>]]))</span>
+<span id="cb13-192"><a href="#cb13-192" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(r2)</span>
+<span id="cb13-193"><a href="#cb13-193" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb13-194"><a href="#cb13-194" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-195"><a href="#cb13-195" aria-hidden="true" tabindex="-1"></a>kfold_cv <span class="ot">&lt;-</span> <span class="cf">function</span>(data, <span class="at">k =</span> <span class="dv">16</span>, <span class="at">seed =</span> <span class="dv">23</span>) {</span>
+<span id="cb13-196"><a href="#cb13-196" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set.seed</span>(seed)</span>
+<span id="cb13-197"><a href="#cb13-197" aria-hidden="true" tabindex="-1"></a>  n <span class="ot">&lt;-</span> <span class="fu">nrow</span>(data)</span>
+<span id="cb13-198"><a href="#cb13-198" aria-hidden="true" tabindex="-1"></a>  fold_ids <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">rep_len</span>(<span class="dv">1</span><span class="sc">:</span>k, <span class="at">length.out =</span> n))</span>
+<span id="cb13-199"><a href="#cb13-199" aria-hidden="true" tabindex="-1"></a>  folds <span class="ot">&lt;-</span> <span class="fu">map</span>(<span class="dv">1</span><span class="sc">:</span>k, <span class="sc">~</span> <span class="fu">which</span>(fold_ids <span class="sc">==</span> .x))</span>
+<span id="cb13-200"><a href="#cb13-200" aria-hidden="true" tabindex="-1"></a>  r2_values <span class="ot">&lt;-</span> <span class="fu">map_dbl</span>(folds, process_folds)</span>
+<span id="cb13-201"><a href="#cb13-201" aria-hidden="true" tabindex="-1"></a>  results <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">fold =</span> <span class="dv">1</span><span class="sc">:</span>k, <span class="at">R2 =</span> r2_values)</span>
+<span id="cb13-202"><a href="#cb13-202" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(results)</span>
+<span id="cb13-203"><a href="#cb13-203" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb13-204"><a href="#cb13-204" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-205"><a href="#cb13-205" aria-hidden="true" tabindex="-1"></a>k_fold <span class="ot">&lt;-</span> <span class="fu">kfold_cv</span>(grouped_data)</span>
+<span id="cb13-206"><a href="#cb13-206" aria-hidden="true" tabindex="-1"></a>k_fold <span class="sc">%&gt;%</span> </span>
+<span id="cb13-207"><a href="#cb13-207" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">&quot;Fold&quot;</span>, <span class="st">&quot;R-Squared Value&quot;</span>), <span class="at">align =</span> <span class="st">&#39;c&#39;</span>, <span class="at">digits =</span> <span class="dv">4</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb13-208"><a href="#cb13-208" aria-hidden="true" tabindex="-1"></a>  kableExtra<span class="sc">::</span><span class="fu">kable_classic</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb13-209"><a href="#cb13-209" aria-hidden="true" tabindex="-1"></a>  <span class="fu">row_spec</span>(<span class="dv">0</span>, <span class="at">bold =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb13-210"><a href="#cb13-210" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_header_above</span>(<span class="at">bold =</span> <span class="cn">TRUE</span>, <span class="fu">c</span>(<span class="st">&quot;R-Squared Value for each Fold&quot;</span> <span class="ot">=</span> <span class="dv">2</span>))</span>
+<span id="cb13-211"><a href="#cb13-211" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb13-212"><a href="#cb13-212" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-215"><a href="#cb13-215" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb13-216"><a href="#cb13-216" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> k_fold)<span class="sc">+</span></span>
-<span id="cb13-217"><a href="#cb13-217" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> fold, <span class="at">y =</span> R2))<span class="sc">+</span></span>
-<span id="cb13-218"><a href="#cb13-218" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="fu">mean</span>(k_fold<span class="sc">$</span>R2), <span class="at">color =</span> <span class="st">&quot;blue&quot;</span>) <span class="sc">+</span></span>
-<span id="cb13-219"><a href="#cb13-219" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;R-Squared Values per Fold&quot;</span>,</span>
-<span id="cb13-220"><a href="#cb13-220" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Fold Number used for Test Data&quot;</span>,</span>
-<span id="cb13-221"><a href="#cb13-221" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;R-Squared Value&quot;</span>, </span>
-<span id="cb13-222"><a href="#cb13-222" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">&quot;Average R-squared value is shown by Blue Line&quot;</span>)</span>
-<span id="cb13-223"><a href="#cb13-223" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb13-224"><a href="#cb13-224" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-225"><a href="#cb13-225" aria-hidden="true" tabindex="-1"></a>The average R-squared values, shown by the blue line, is 0.5629. This means that 56.29% of the variability in Happiness Score can be explained by Daily Income. This is a very differnt prediction than the full model earlier which was 72.28%. However the average R-Squared is a much better predictor thus Daily Income is even less of a predictor of Happiness Score than we previosuly expected. Also now there is slightly more than 40% of the variance it still unexplained compared to around 30% before.</span>
+<span id="cb13-213"><a href="#cb13-213" aria-hidden="true" tabindex="-1"></a>As you can see from the table there is a lot of variation in the R-Squared for each model. Some are very high like folds 3 and 14 while some are very low like fold 10. Thus this variation in the values means that sometimes the model is very good at predicting the countries happiness score and sometimes the trained model can not accurately determine the countries happiness score from the daily income.In the graph below you can see the distribution of R-Squared compared to mean value.</span>
+<span id="cb13-214"><a href="#cb13-214" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-217"><a href="#cb13-217" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb13-218"><a href="#cb13-218" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> k_fold)<span class="sc">+</span></span>
+<span id="cb13-219"><a href="#cb13-219" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> fold, <span class="at">y =</span> R2))<span class="sc">+</span></span>
+<span id="cb13-220"><a href="#cb13-220" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="fu">mean</span>(k_fold<span class="sc">$</span>R2), <span class="at">color =</span> <span class="st">&quot;blue&quot;</span>) <span class="sc">+</span></span>
+<span id="cb13-221"><a href="#cb13-221" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;R-Squared Values per Fold&quot;</span>,</span>
+<span id="cb13-222"><a href="#cb13-222" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Fold Number used for Test Data&quot;</span>,</span>
+<span id="cb13-223"><a href="#cb13-223" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;R-Squared Value&quot;</span>, </span>
+<span id="cb13-224"><a href="#cb13-224" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">&quot;Average R-squared value is shown by Blue Line&quot;</span>)</span>
+<span id="cb13-225"><a href="#cb13-225" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb13-226"><a href="#cb13-226" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-227"><a href="#cb13-227" aria-hidden="true" tabindex="-1"></a><span class="fu">## Conclusion</span></span>
+<span id="cb13-227"><a href="#cb13-227" aria-hidden="true" tabindex="-1"></a>The average R-squared values, shown by the blue line, is 0.5629. This means that 56.29% of the variability in Happiness Score can be explained by Daily Income. This is a very different prediction than the full model earlier which was 72.28%. However the average R-Squared is a much better predictor thus Daily Income is even less of a predictor of Happiness Score than we previously expected. Also now there is slightly more than 40% of the variance it still unexplained compared to around 30% before.</span>
 <span id="cb13-228"><a href="#cb13-228" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-229"><a href="#cb13-229" aria-hidden="true" tabindex="-1"></a>Throughout our analysis, we were curious about answering the central question proposed by Michele W. Berger: &quot;Does more money correlate with greater happiness?&quot; We have focused on the relationship between daily income and happiness, leading us to discover that there is indeed a positive relationship between the two. The data set we used were prepared by omitting any countries and years that had missing values. Our linear regression model showed that there is extremely strong evidence of a positive relationship happiness scores and daily income throughout the years for over 150 countries. The model shows that this relationship explains for 72.28% of the variation in Happiness Score. For confirmation of this relationship, we conducted a 16-fold cross validation which showed that there was a consistent relationship, strengthening our findings.</span>
+<span id="cb13-229"><a href="#cb13-229" aria-hidden="true" tabindex="-1"></a><span class="fu">## Conclusion</span></span>
 <span id="cb13-230"><a href="#cb13-230" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-231"><a href="#cb13-231" aria-hidden="true" tabindex="-1"></a>The analysis of the positive relationship between daily income and happiness scores in various countries corroborates theories about the way money can help alleviate stressors caused by lack of finances. The increase of money can be used to access housing, better healthcare, more fulfilling experiences, and much more. Although we found that higher daily incomes are associated with higher happiness scores, happiness can be influenced by other things that are not gathered by daily income like personal values and religion.</span>
+<span id="cb13-231"><a href="#cb13-231" aria-hidden="true" tabindex="-1"></a>Throughout our analysis, we were curious about answering the central question proposed by Michele W. Berger: &quot;Does more money correlate with greater happiness?&quot; We have focused on the relationship between daily income and happiness, leading us to discover that there is indeed a positive relationship between the two. The data set we used were prepared by omitting any countries and years that had missing values. Our linear regression model showed that there is extremely strong evidence of a positive relationship happiness scores and daily income throughout the years for over 150 countries. The model shows that this relationship explains for 72.28% of the variation in Happiness Score. For confirmation of this relationship, we conducted a 16-fold cross validation which showed that there was actually a lower percent of variabilty accounted for, which slightly weakens the relationship.</span>
 <span id="cb13-232"><a href="#cb13-232" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-233"><a href="#cb13-233" aria-hidden="true" tabindex="-1"></a>Our model does have limitations. We can see that there is a positive relationship between daily income and happiness scores. However, it is important to acknowledge that there can be a point where money can have diminishing returns in terms of happiness. Infinite money would not necessarily mean infinite happiness. So, although money cannot buy happiness, money seems to be a basis where it can expand the opportunities to increase happiness.</span>
+<span id="cb13-233"><a href="#cb13-233" aria-hidden="true" tabindex="-1"></a>The analysis of the positive relationship between daily income and happiness scores in various countries corroborates theories about the way money can help alleviate stressors caused by lack of finances. The increase of money can be used to access housing, better healthcare, more fulfilling experiences, and much more. Although we found that higher daily incomes are associated with higher happiness scores, happiness can be influenced by other things that are not gathered by daily income like personal values and religion.</span>
 <span id="cb13-234"><a href="#cb13-234" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-235"><a href="#cb13-235" aria-hidden="true" tabindex="-1"></a><span class="fu">## Works Cited</span></span>
+<span id="cb13-235"><a href="#cb13-235" aria-hidden="true" tabindex="-1"></a>Our model does have limitations. We can see that there is a positive relationship between daily income and happiness scores. However, it is important to acknowledge that there can be a point where money can have diminishing returns in terms of happiness. Infinite money would not necessarily mean infinite happiness. So, although money cannot buy happiness, money seems to be a basis where it can expand the opportunities to increase happiness.</span>
 <span id="cb13-236"><a href="#cb13-236" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-237"><a href="#cb13-237" aria-hidden="true" tabindex="-1"></a>Berger, Michele W. “Does More Money Correlate with Greater Happiness?” Penn Today, University of Pennsylvania, 6 Mar. 2023, penntoday.upenn.edu/news/does-more-money-correlate-greater-happiness-Penn-Princeton-research.</span>
+<span id="cb13-237"><a href="#cb13-237" aria-hidden="true" tabindex="-1"></a><span class="fu">## Works Cited</span></span>
 <span id="cb13-238"><a href="#cb13-238" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-239"><a href="#cb13-239" aria-hidden="true" tabindex="-1"></a>Helliwell, John F., et al. &quot;World Happiness Report 2024.&quot; The World Happiness Report, 20 Mar. 2024, <span class="co">[</span><span class="ot">worldhappiness.report/ed/2024/</span><span class="co">](http://worldhappiness.report/ed/2024/)</span>.</span>
+<span id="cb13-239"><a href="#cb13-239" aria-hidden="true" tabindex="-1"></a>Berger, Michele W. “Does More Money Correlate with Greater Happiness?” Penn Today, University of Pennsylvania, 6 Mar. 2023, penntoday.upenn.edu/news/does-more-money-correlate-greater-happiness-Penn-Princeton-research.</span>
 <span id="cb13-240"><a href="#cb13-240" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-241"><a href="#cb13-241" aria-hidden="true" tabindex="-1"></a>&quot;Poverty and Inequality Platform.&quot; Poverty and Inequality Platform, 2022, <span class="co">[</span><span class="ot">pip.worldbank.org/#</span><span class="co">](http://pip.worldbank.org/#)</span>.</span>
+<span id="cb13-241"><a href="#cb13-241" aria-hidden="true" tabindex="-1"></a>Helliwell, John F., et al. &quot;World Happiness Report 2024.&quot; The World Happiness Report, 20 Mar. 2024, <span class="co">[</span><span class="ot">worldhappiness.report/ed/2024/</span><span class="co">](http://worldhappiness.report/ed/2024/)</span>.</span>
+<span id="cb13-242"><a href="#cb13-242" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-243"><a href="#cb13-243" aria-hidden="true" tabindex="-1"></a>&quot;Poverty and Inequality Platform.&quot; Poverty and Inequality Platform, 2022, <span class="co">[</span><span class="ot">pip.worldbank.org/#</span><span class="co">](http://pip.worldbank.org/#)</span>.</span>
 </code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
